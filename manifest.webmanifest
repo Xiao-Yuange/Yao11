@@ -1,0 +1,9 @@
+{
+  "name": "To 肖瑶",
+  "short_name": "给肖瑶的信",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff4f7",
+  "theme_color": "#f7c6d4",
+  "description": "一封写给肖瑶的信。"
+}
