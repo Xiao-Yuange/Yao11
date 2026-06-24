@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7c6d4" />
+  <meta name="description" content="一封写给肖瑶的信。" />
+  <title>To 肖瑶</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    :root {
+      --bg1: #fff4f7;
+      --bg2: #ffe8ef;
+      --paper: rgba(255,255,255,0.82);
+      --ink: #47313a;
+      --muted: #8b6671;
+      --accent: #d95b83;
+      --accent2: #ffc4d6;
+      --line: rgba(217,91,131,0.22);
+      --shadow: 0 22px 70px rgba(122, 49, 74, .18);
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(255,255,255,.9) 0 15%, transparent 33%),
+        radial-gradient(circle at 88% 18%, rgba(255, 214, 226, .9) 0 12%, transparent 34%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+      line-height: 1.82;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, transparent, black 8%, black 88%, transparent);
+    }
+    .float-hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(217,91,131,.22);
+      font-size: 18px;
+      animation: rise linear infinite;
+      filter: blur(.1px);
+    }
+    .heart:nth-child(1) { left: 8%; animation-duration: 13s; animation-delay: -1s; }
+    .heart:nth-child(2) { left: 23%; animation-duration: 17s; animation-delay: -7s; font-size: 26px; }
+    .heart:nth-child(3) { left: 41%; animation-duration: 15s; animation-delay: -3s; }
+    .heart:nth-child(4) { left: 63%; animation-duration: 19s; animation-delay: -10s; font-size: 24px; }
+    .heart:nth-child(5) { left: 82%; animation-duration: 14s; animation-delay: -5s; }
+    @keyframes rise {
+      from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: .7; }
+      to { transform: translateY(-110vh) rotate(18deg); opacity: 0; }
+    }
+    .unlock {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.92), rgba(255,232,239,.92)),
+        linear-gradient(135deg, #fff7fa, #ffe0ea);
+      transition: opacity .45s ease, visibility .45s ease;
+    }
+    .unlock.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .unlock-card {
+      width: min(470px, 100%);
+      padding: 32px 26px;
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 32px;
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      text-align: center;
+      backdrop-filter: blur(18px);
+    }
+    .seal {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffb8cf, #e55d88);
+      color: white;
+      font-size: 34px;
+      box-shadow: 0 16px 40px rgba(217,91,131,.35);
+    }
+    .unlock h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 6vw, 40px);
+      letter-spacing: .02em;
+    }
+    .unlock p {
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .unlock input {
+      width: 100%;
+      margin: 18px 0 12px;
+      padding: 15px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(217,91,131,.26);
+      outline: none;
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: .12em;
+    }
+    .unlock input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(217,91,131,.12);
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    button:active { transform: scale(.98); }
+    .primary-btn {
+      width: 100%;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, #e9638e, #c94b75);
+      color: white;
+      box-shadow: 0 14px 34px rgba(201,75,117,.28);
+      font-weight: 700;
+    }
+    .hint {
+      font-size: 13px !important;
+      opacity: .85;
+    }
+    .wrong {
+      min-height: 24px;
+      color: #be315b !important;
+      font-weight: 600;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px max(18px, calc((100vw - 900px)/2));
+      background: rgba(255,244,247,.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(217,91,131,.12);
+    }
+    .brand {
+      font-weight: 800;
+      color: #b9446d;
+      letter-spacing: .04em;
+    }
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a {
+      color: #9d4662;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.5);
+    }
+    main {
+      position: relative;
+      z-index: 2;
+      width: min(900px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 40px 0 90px;
+    }
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 34px 0;
+    }
+    .letter-cover {
+      width: min(760px, 100%);
+      padding: clamp(30px, 7vw, 76px) clamp(24px, 7vw, 70px);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.72)),
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(217,91,131,.075) 32px);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+    .letter-cover::after {
+      content: "♡";
+      position: absolute;
+      right: 28px;
+      bottom: 8px;
+      color: rgba(217,91,131,.13);
+      font-size: 140px;
+      line-height: 1;
+      transform: rotate(-12deg);
+    }
+    .kicker {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .hero h1 {
+      margin: 10px 0 12px;
+      font-size: clamp(42px, 12vw, 86px);
+      line-height: 1.05;
+      color: #53303d;
+      font-family: "Songti SC", "STSong", "SimSun", serif;
+      font-weight: 800;
+    }
+    .subtitle {
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(17px, 4vw, 23px);
+      max-width: 520px;
+    }
+    .tiny-note {
+      margin-top: 24px;
+      color: #a66b7b;
+      font-size: 14px;
+    }
+    .scroll-btn {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(135deg, #e9638e, #c94b75);
+      box-shadow: 0 14px 34px rgba(201,75,117,.24);
+      font-weight: 700;
+    }
+    section {
+      margin: 24px 0;
+      padding: clamp(22px, 5vw, 44px);
+      border: 1px solid rgba(255,255,255,.86);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 16px 48px rgba(122, 49, 74, .10);
+      backdrop-filter: blur(14px);
+    }
+    section h2 {
+      margin: 0 0 18px;
+      font-size: clamp(24px, 6vw, 38px);
+      color: #573340;
+      font-family: "Songti SC", "STSong", "SimSun", serif;
+    }
+    p {
+      margin: 0 0 1.15em;
+      font-size: clamp(16px, 3.6vw, 19px);
+      text-align: left;
+    }
+    .letter-body p::first-letter {
+      /* intentionally subtle */
+    }
+    .timeline {
+      position: relative;
+      padding-left: 18px;
+      border-left: 2px solid var(--line);
+    }
+    .memory-card {
+      position: relative;
+      margin: 0 0 18px;
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.67);
+      border: 1px solid rgba(217,91,131,.14);
+    }
+    .memory-card::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 23px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(217,91,131,.12);
+    }
+    .date {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #bd456d;
+      font-weight: 900;
+      letter-spacing: .03em;
+      background: rgba(255,196,214,.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .memory-card p {
+      margin-bottom: 0;
+    }
+    .promise {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,235,242,.76)),
+        radial-gradient(circle at 90% 10%, rgba(217,91,131,.16), transparent 34%);
+    }
+    .quote {
+      margin: 20px 0 0;
+      padding: 22px;
+      border-left: 4px solid var(--accent);
+      background: rgba(255,255,255,.58);
+      border-radius: 18px;
+      color: #66384a;
+      font-size: clamp(18px, 4vw, 23px);
+      font-weight: 800;
+      line-height: 1.8;
+    }
+    .sign {
+      text-align: right;
+      margin-top: 34px;
+      font-size: clamp(18px, 4vw, 22px);
+      color: #613240;
+      font-weight: 800;
+    }
+    .footer {
+      text-align: center;
+      color: #9b6675;
+      font-size: 14px;
+      margin-top: 26px;
+    }
+    .offline-tip {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.6);
+      color: #8b5567;
+      font-size: 14px;
+      text-align: center;
+      border: 1px dashed rgba(217,91,131,.25);
+    }
+    @media (max-width: 620px) {
+      .topbar { align-items: flex-start; }
+      .nav a { font-size: 12px; padding: 6px 8px; }
+      main { width: min(100% - 18px, 900px); padding-top: 22px; }
+      section { border-radius: 22px; }
+      .letter-cover { border-radius: 24px; }
+      .timeline { padding-left: 13px; }
+      .memory-card { padding: 15px 14px; }
+      .memory-card::before { left: -21px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .heart { animation: none; display: none; }
+      * { transition: none !important; }
+    }
+    @media print {
+      .unlock, .topbar, .float-hearts, .scroll-btn, .offline-tip { display: none !important; }
+      body { background: white; }
+      main { width: 100%; padding: 0; }
+      section, .letter-cover { box-shadow: none; border: 1px solid #eee; }
+    }
+  </style>
+</head>
+<body>
+  <div class="float-hearts" aria-hidden="true">
+    <span class="heart">♡</span>
+    <span class="heart">❤</span>
+    <span class="heart">♡</span>
+    <span class="heart">❤</span>
+    <span class="heart">♡</span>
+  </div>
+
+  <div class="unlock" id="unlock">
+    <div class="unlock-card">
+      <div class="seal">💌</div>
+      <h1>一封给肖瑶的信</h1>
+      <p>不是离别信，是我们故事的第一本日记。</p>
+      <input id="passcode" inputmode="numeric" autocomplete="off" placeholder="输入我们的日期" maxlength="8" />
+      <button class="primary-btn" id="openBtn">打开这封信</button>
+      <p class="hint">提示：我们在一起的日期，四位数字。</p>
+      <p class="wrong" id="wrong"></p>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">XTC × XY</div>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#letter">信</a>
+      <a href="#memories">日记</a>
+      <a href="#promise">约定</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="letter-cover">
+        <div class="kicker">For you</div>
+        <h1>To：肖瑶</h1>
+        <p class="subtitle">未来很远，但我会一直牵着你的手。</p>
+        <div class="tiny-note">从 5 月 21 号开始，到很多很多年以后。</div>
+        <a class="scroll-btn" href="#letter">慢慢打开 ↓</a>
+      </div>
+    </div>
+
+    <section id="letter" class="letter-body">
+      <h2>不知道这是你第几次打开这封信</h2>
+      <p>不知道这是你第几次打开这封信。</p>
+<p>可能是第一次，也可能已经是第一百次了。但我希望，不管是哪一次，你看到它的时候，都能有个好心情！</p>
+<p>写这封信的时候，我总觉得自己好像在写一封离别信。可是我不想把它叫作离别信，因为我从来没有把这次分别当成真正的分开。</p>
+<p>高中毕业只是我们人生里一个阶段的结束，不是我们的结束。我们以后在一起的时间还长着呢。我希望未来的你再打开这封信的时候，我还在你身边，或者至少，我们还在坚定地走向彼此。</p>
+<p>其实每次想起我们刚认识的时候，我都觉得很神奇。</p>
+    </section>
+
+    <section id="memories">
+      <h2>我们的第一本日记</h2>
+      <div class="timeline">
+        <article class="memory-card">
+        <div class="date">5月21号</div>
+        <p>英语课下课，我鼓起勇气去问你 prom 的事。现在想起来，还是会觉得很梦幻，好像命运就是从那一刻开始，悄悄把我们往一起推。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月22号</div>
+        <p>prom 那天，我们明明都想找对方，却又刚好错过。你穿着黑色礼服出现在我视野里的时候，我真的觉得你像 prom 的女主角。而我只是一个平平无奇的人，甚至有点不敢靠近你。我怕你只是客气，怕我太自来熟，怕你其实并不想和我聊天。可是后来你问我要不要一起拍照。那一刻我真的很庆幸，幸好我来了，幸好我没有错过你。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月23号</div>
+        <p>你凌晨给我返图。很巧的是，五分钟后我居然莫名其妙醒了，还刚好看到了你的消息。我立刻回你，可是你好像一开始不太想理我。后来早上我又打开聊天框，找话题和你说话，你才回我。那天你还帮我拼了我们的合照，虽然照片刚发出去就被吐槽 P 得太过了，但我还是很开心，因为那是我们故事开始的证据。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月24号</div>
+        <p>早上醒来看到你给我发消息，我开心得不行，结果仔细一看，居然是 Kelly 加我微信。那天一下午我都很想给你发点什么，可是朋友一直让我别主动。我就忍着冲动，和他们打了一天 CSGO。可是到了晚上，是你先来问我明天去不去学校。那一刻我真的特别开心，因为我知道，你也是有一点想见我的。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月25号</div>
+        <p>不出所料这应该是我给你这封信时刚好一个月前，我们在这天才算是真正开始玩了吧！我们这天打粥一直打到第二天凌晨！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月26号</div>
+        <p>这天我们一起出去玩飞盘了，还打了篮球！回了家还一起打了三角洲，一直打到第二天凌晨哦～</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月27号</div>
+        <p> 我们聊了很多有意思的事情，还一起玩了三角洲，这就是我们一起玩光遇的那天哟～而且那天我就和你说过了，诅咒消失，我们以后不会再分开啦！这天你还下载了第五人格陪我玩！我们这天也玩到了第二天凌晨！！！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月28号</div>
+        <p>今天虽然是在复习数学啦，但是我们第一次呆了一整节p4！！！然后就在这天下午你还邀请我周六一起去Grand Bend！我超级超级超级期待那天！我们这天也打粥打到了第二天哟</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月29号</div>
+        <p>这天我们放学后两个人都有事，但是晚上开始一直聊天聊到四点半！！而且这天还不一般哟～</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月30号</div>
+        <p>我们一起去了湖边！超级好玩超级开心 暧昧真好啊嘻嘻 你真的好好玩！！！你为什么要不敢说出来…大胆说嘛我一定会同意的！ 但是这天晚上打电话我还是没忍住说出来了啊… 我们也算是在后一天凌晨算是表明心意了！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">5月31号</div>
+        <p>是我们在一起的第一天。我们一起去 Masonville 写作业，又一路散步到 Western 校园里。那天发生了我人生第一次牵手。牵到你手的那一瞬间，我大脑真的一片空白，耳朵也红得不行。明明只是牵手，可是对我来说，那一刻特别特别珍贵。因为从那一刻开始，我真的感觉到：你是我女朋友了。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月1号</div>
+        <p>我们在一起的第二天！你带着我在食堂一起看五哈！根本看不进去…因为你把腿架我腿上了，好亲密，好甜，好开心！这天是你第一次和我打语音陪我上课！到家后你睡着了…我好想好想你！我们第一次完整地打着语音睡觉（因为昨天的中间断了）！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月2号</div>
+        <p>今天我们又在学校里一起牵手看综艺！而且放学后还有约会！放学了你送给了我一颗巧克力！我们还一起去了梅森取了钱然后去买了情侣挂件！好开心！还知道了哪有盒饭（）</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月3号</div>
+        <p>今天你的考试成绩发下来啦，考的很好哟～嗯那个辣味糖果的糖纸还在我包里放着呢。今天中午还在图书馆给你讲unit8的东西，你往我身上一贴我直接大脑一片空白了。今天还是我妈妈的生日，全程和你打着语音好开心！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月4号</div>
+        <p>今天你给了我一根头绳！！！我带着真的好开心！我们一起在食堂拍了好多照片！你还给了我折了小花花！放学了我们还去打了网球！你给我带了冰红茶，在网球场边的小树林你第一次亲了我的脸！！！！我也正式和你说了我的表白计划嘿嘿！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月5号</div>
+        <p>今天放学后我去上课了但是你一直挂着语音陪我哟～你和Lisa去了梅森给我买了大黄，还写了情书！我真的好开心！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月6号</div>
+        <p>天真是个好日子呀～我们去约会咯～ 我们先是打了网球！（但是我把你的项链弄坏了…）（我们在lisa家第一次亲嘴了！！！！！！！！）然后去了downtown拿了花，今天是正式和你表白哟，从今天开始我算是彻彻底底赖上你了！大黄和情书我真的超级超级喜欢！我在此宣誓，我夏天宸一定要让肖瑶成为世界上最幸福的女孩！我们也是正式官宣了哟～ 不是随便说说的那种，是真的想做到。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月7号</div>
+        <p>我们换了 QQ 情头。我还骑着车来找你。你给我头上扎了个大蒜，走之前还被我的头发笑死。和你在一起的时候，我经常觉得自己有点傻，但我又特别喜欢这种傻。因为只有在你面前，我才会这么放松，这么开心。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月8号</div>
+        <p>是我第一次坐校车，也是我们第一次一起去麦当劳。表面上说是做 PPT，我们在那真的是越来无法无天了 明明第一次去不是那样的。我还被迫自愿穿女仆装了…</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月9号</div>
+        <p>今天我们又一起去麦当劳学习了哟！我还顺走了你的黑框眼镜，我要是带上能像雨宫莲一样帅就好了…… 那天我们立了一个誓：美东时间 2026 年6月10号凌晨2:26，我们在各自的床上约定，永远不成为对方的遗憾。就算以后异国，就算大学很忙，我们也一定要把恋爱谈得很好玩、很有趣，熬过大学，永不分离。宝宝，我真的一直记得。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月10号</div>
+        <p>宝宝 我想了解你的一切。了解你的原生家庭了解你的伤疤 了解你的苦楚  了解你的不甘  了解你每天为什么有那么多的不开心为什么有那么多的不容易 想知道你小时候是什么样子的,你的痛苦,你的悲伤你的疼痛,你爱吃的菜,爱吃的水果爱喝的什么酸奶,爱看什么类型的电视,爱看什么类型的电影,喜欢小猫还是小狗,你上一段的恋情,你是否已经走出来了,在乎你的情绪你的眼泪,你抽的每一根烟,以及每一个回眸,以及你说爱我的每个瞬间每一秒,爱你的胡思乱想,爱你的嘴硬,我想了解你的一切 所以看看腿。那天我还告诉了我妈妈我们在一起的事。那一刻我真的很开心，因为我再也不用偷偷摸摸地喜欢你了。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月11号</div>
+        <p>嘿嘿今天我拉着gxy去给你买毕业礼物啦～但是被你看出来了……那咋了看出来咋了 我就要送你礼物！明天就是毕业典礼啦 好期待！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月12号</div>
+        <p>今天是毕业典礼！！！可惜你感冒太严重了只能呆在家里但是我也上一节课就回家陪你啦嘻嘻！没有你的学校一点意思都没有！为什么你的第一个jelly cat是你住家阿姨送的！！！！为什么！！！！！！不！！！！！！！嘿嘿但是我们领证啦！好开心！能一直和你在一起真好啊！！！毕业有你真好啊！你说我最好发一个自己一个人的毕业朋友圈但是我已经认定你了，我不会丢下你的！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月13号</div>
+        <p>今天我们一起去吃了盒饭！还去宠物店撸猫了！我们还一起吃了一个冰激凌！在downtown的小湖边散步，在游乐园一起玩！还有嘿嘿和大黄的合照！完美的一家四口！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月14号</div>
+        <p>我们一起去拼豆。第一次拼豆真的很好玩，和你待那么久也很安心。我很喜欢你拼的钥匙圈。只是我高估了自己的速度，让你等了那么久。可是你没有生气，你只是陪着我。和你在一起，我经常会有这种感觉：我好像不用那么完美，也可以被你喜欢。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月15号</div>
+        <p>嘻嘻今天早上就给你解释了霸王龙形态！今天你忘记把耳机还给我了！所以你上课后又出来给我耳机，我们还亲亲了！你好像拿舌头舔了我一下，这触发了我的奇妙开关于是我回家路上就开始搜索第一次亲嘴需要注意什么了（（（。今天我们还去麦当劳学习啦，虽然学了一会儿我就去上课了！但是放学后还是待在一起了哟！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月16号</div>
+        <p>今天早上我们在学校里第一次深吻了！！！！！我们放学后一起去Lisa家录英语tedtalk了！好耶我们都拿了80分！然后还在厕所里好好亲了一亲，我勒个豆居然亲了两个小时……还给你种了草莓哟———</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月17号</div>
+        <p>今天我们一起换了qq音乐的情头！在学校里还和你kiss了！我们还在麦当劳的情侣专座大亲特亲了！我对着你的肚子一顿猛摸你告诉我摸肚子会有感觉？！居然会这样？！！！究竟是人性的扭曲还是道德的沦丧！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月18号</div>
+        <p>今天是上学的最后一天！！在学校遇到了许多奇妙的事情，而且人太多了都亲不了！！！！！可是我还是很开心。因为这是高中最后一天，而我的身边有你。不过真是最疯狂的一天！再也不会去麦当劳了…再也不神秘了！！！！不过真好捏呀嘿嘿嘿）。</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月19号</div>
+        <p>今天你给我编了彩绳！好开心！我们在学校趁着没人真是越来越猖狂了！！！嘿嘿我们考完试还一起去散步啦！小树林kisskiss！真是完美的一天呀～</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月20号</div>
+        <p>我们一起去摘草莓了！嘿嘿你的锁骨上也有草莓哦———我们还在Lisa家“认真学习”了一下午！今天下雨了，我失去了你的彩绳———不———</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月21号</div>
+        <p>今天真是刺激的的一天啊 Lisa神秘的住家还是太来无影去无踪了，谢谢你请我喝奶茶呀～很开心能让你幸福的哭出来！也谢谢你一直在安慰我呀～但是继麦当劳之后我们又损失了一个重要根据地！！！嘿嘿我们还换了微信的情头！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月22号</div>
+        <p>诶嘿今天说是复习其实去逛街了！好开心！和你逛街真有意思呀，看着那么多商品想象你用化妆品的样子，想象你穿上好看衣服的样子真开心！和你牵着手逛街真好！我想永远牵住你的手不放开！发明那个软件的人真是个天才，我俩也是都愿打愿挨啊！</p>
+    </article>
+<article class="memory-card">
+        <div class="date">6月23号</div>
+        <p>诶嘿终于更新到最新一话啦，今天醋坛子真是大翻特翻但是宝宝你真好，一直给我解释给我安全感我真的好喜欢好喜欢好喜欢你！跟你在一起的每一分每一秒都好开心！和你打视频看着你的样子也超级喜欢！怎么样的你我都好喜欢啊啊啊啊！嘿嘿还在你腿上写了xtc爱xy！好开心！我们明天一起去看电影吧！</p>
+    </article>
+      </div>
+    </section>
+
+    <section id="promise" class="letter-body promise">
+      <h2>不是高中限定，是想带去未来的人</h2>
+      <p>宝宝，其实我知道，你会害怕。</p>
+<p>你怕我们一毕业就分开，怕我现在说的未来都只是画饼，怕异国，怕大学，怕时间，怕新环境，怕有一天我们慢慢变淡。</p>
+<p>我不想用一句“你别怕”就让你相信我。</p>
+<p>因为真正的安全感不是靠一句话给的，是靠以后一天一天做出来的。</p>
+<p>我不能保证未来永远没有困难，也不能保证我们永远不会吵架、不会委屈、不会想太多。可是我能保证的是，只要我们还喜欢彼此，我就不会轻易放手。</p>
+<p>我会认真回消息，会主动报备，会在你不开心的时候哄你，会在你没有安全感的时候给你安全感，会把你放进我的计划里，而不是只放进我的嘴上。</p>
+<p>我想和你一起把异国恋谈得很好玩。</p>
+<p>想和你分享每天发生的小事，想和你打电话睡觉，想和你一起看电影，想听你吐槽，想陪你开心，也想陪你难过。想在大学里继续爱你，想在很多年后再和你一起回头看这封信，然后笑我们当时怎么这么幼稚、这么认真、这么可爱。</p>
+<p>肖瑶，我真的很喜欢你。</p>
+<p>不是只喜欢你漂亮的样子，不是只喜欢你开心的时候，也不是只喜欢我们刚在一起的新鲜感。我喜欢你的小脾气，喜欢你的嘴硬，喜欢你给我的安全感，喜欢你愿意陪我玩，喜欢你认真安慰我，喜欢你靠近我的时候，喜欢你说爱我的每一秒。</p>
+<p>你不是我的高中限定。</p>
+<p>你是我想带去未来的人。</p>
+<p>所以这封信不是结束，也不是告别。</p>
+<p>它只是我们故事的第一本日记，是从 5 月 21 号到现在的证明。以后我们还会有很多很多天，很多很多新的日期，很多很多新的回忆。等以后我们再打开这封信的时候，我希望我们可以一起接着往下写。</p>
+<p>我夏天宸和肖瑶，约定过永远不成为对方的遗憾。</p>
+<p>我会记得。</p>
+<p>我也会做到。</p>
+<p>毕业快乐，宝宝。</p>
+<p>未来很远，但我会一直牵着你的手。</p>
+      <div class="quote">我夏天宸和肖瑶，约定过永远不成为对方的遗憾。</div>
+      <div class="sign">From：赖上你的夏天宸</div>
+      <div class="offline-tip">上飞机前打开一次这页；如果网页已经加载好，没网时也能继续慢慢看。</div>
+    </section>
+
+    <div class="footer">Made with love · 2026</div>
+  </main>
+
+  <script>
+    const PASSCODE = "0531"; 
+    const unlock = document.getElementById("unlock");
+    const passcode = document.getElementById("passcode");
+    const openBtn = document.getElementById("openBtn");
+    const wrong = document.getElementById("wrong");
+
+    function showLetter() {
+      unlock.classList.add("hidden");
+      localStorage.setItem("xy-letter-opened", "yes");
+      setTimeout(() => document.getElementById("letter").scrollIntoView({ behavior: "smooth" }), 300);
+    }
+
+    function tryOpen() {
+      const value = (passcode.value || "").replace(/\s/g, "");
+      if (value === PASSCODE) {
+        showLetter();
+      } else {
+        wrong.textContent = "不对哦，再想想我们在一起的那一天。";
+        passcode.select();
+      }
+    }
+
+    if (localStorage.getItem("xy-letter-opened") === "yes") {
+      unlock.classList.add("hidden");
+    }
+
+    openBtn.addEventListener("click", tryOpen);
+    passcode.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryOpen();
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
