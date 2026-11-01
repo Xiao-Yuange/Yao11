@@ -10,8 +10,8 @@ window.XY_GALLERY = [
   { file: "photos/together-02.jpg", category: "together", title: "第一次牵手", date: "2026.05.31", caption: "从那一天开始，是我们" },
   { file: "photos/together-03.jpg", category: "together", title: "正式告白的那一天", date: "2026.06.06", caption: "从此彻底赖上你啦" },
   { file: "photos/together-04.jpg", category: "together", title: "要回国了————", date: "2026.06.26", caption: "谁都不舍得说再见" },
-  { file: "photos/heartbeat-01.jpg", category: "heartbeat", title: "黑色礼服的你", date: "PROM NIGHT", caption: "第一次觉得你像电影的女主角" },
-  { file: "photos/heartbeat-02.jpg", category: "heartbeat", title: "让人心动的笑", date: "MY FAVORITE", caption: "这样的你，我可以看好久" },
-  { file: "photos/heartbeat-03.jpg", category: "heartbeat", title: "你认真做事的样子", date: "LITTLE MOMENTS", caption: "超级环你给我发的自拍" },
-  { file: "photos/heartbeat-04.jpg", category: "heartbeat", title: "镜头里的你", date: "JUST YOU", caption: "原来喜欢一个人，真的会看不够" }
+  { file: "photos/heartbeat-01.jpg", category: "heartbeat", title: "好看的拼图", date: "LONDON MEMORIES", caption: "Je t'aime是法语的我爱你哦~" },
+  { file: "photos/heartbeat-02.jpg", category: "heartbeat", title: "隐藏款", date: "MY FAVORITE", caption: "小鱼（环球限定版）" },
+  { file: "photos/heartbeat-03.jpg", category: "heartbeat", title: "帅气の小鱼", date: "LITTLE MOMENTS", caption: "超级喜欢你给我发的自拍" },
+  { file: "photos/heartbeat-04.jpg", category: "heartbeat", title: "超超超超喜欢的一集", date: "JUST YOU", caption: "原来喜欢一个人 真的会看不够" }
 ];
