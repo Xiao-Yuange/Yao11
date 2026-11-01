@@ -17,5 +17,6 @@ window.XY_GALLERY = [
   { file: "photos/heartbeat-05.jpg", category: "heartbeat", title: "获得新衣服新鞋子开心的小鱼", date: "Happy <><", caption: "哎 怎么就这么可爱啊啊啊" },
   { file: "photos/heartbeat-06.jpg", category: "heartbeat", title: "开心旅游の小鱼", date: "TRAVEL~", caption: "欢迎收看《带着嘿嘿去旅行》" },
   { file: "photos/heartbeat-07.jpg", category: "heartbeat", title: "和姐妹们干饭の小鱼", date: "FOOOOD", caption: "喜提新美瞳 太好看了！！" },
-  { file: "photos/heartbeat-08.jpg", category: "heartbeat", title: "微信收藏？！", date: "WEEECHAT", caption: "我居然都没发现" }
+  { file: "photos/heartbeat-08.jpg", category: "heartbeat", title: "微信收藏？！", date: "WEEECHAT", caption: "我居然都没发现" },
+  { file: "photos/heartbeat-09.jpg", category: "heartbeat", title: "天使小鱼！", date: "HALLOWEEN", caption: "好美好美好美好美！" }
 ];
