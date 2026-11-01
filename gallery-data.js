@@ -6,7 +6,7 @@
  * 不想显示某张占位卡片，删除对应的 { ... } 即可。
  */
 window.XY_GALLERY = [
-  { file: "photos/together-01.jpg", category: "together", title: "第一次同框", date: "2026.05.22", caption: "幸好那天我们都去了prom" },
+  { file: "photos/together-01.jpg", category: "together", title: "第一次同框", date: "2026.05.22", caption: "虽然说事后说来很神秘 但是还好我们都去了prom" },
   { file: "photos/together-02.jpg", category: "together", title: "第一次牵手", date: "2026.05.31", caption: "从那一天开始，是我们" },
   { file: "photos/together-03.jpg", category: "together", title: "正式告白的那一天", date: "2026.06.06", caption: "从此彻底赖上你啦" },
   { file: "photos/together-04.jpg", category: "together", title: "要回国了————", date: "2026.06.26", caption: "谁都不舍得说再见" },
