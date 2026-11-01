@@ -44,7 +44,7 @@ items.forEach((photo,index)=>{
   const card=document.createElement('article'); card.className='photo-card';card.dataset.category=photo.category;
   const button=document.createElement('button');button.type='button';button.setAttribute('aria-label','查看照片：'+(photo.title||'回忆'));
   const surface=document.createElement('div');surface.className='photo-surface';surface.style.setProperty('--surface',gradients[index%gradients.length]);
-  const image=document.createElement('img');image.loading='lazy';image.alt=photo.title||'我们的照片';image.decoding='async';
+  const image=document.createElement('img');image.loading='eager';image.alt=photo.title||'我们的照片';image.decoding='async';
   const placeholder=document.createElement('div');placeholder.className='photo-placeholder';
   const symbol=document.createElement('span');symbol.className='symbol';symbol.textContent=(photo.category==='heartbeat'?'♡':'✳');
   const small=document.createElement('small');small.textContent='A LITTLE MEMORY';placeholder.append(symbol,small);surface.append(image,placeholder);
