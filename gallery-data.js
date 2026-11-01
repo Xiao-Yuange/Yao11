@@ -14,4 +14,8 @@ window.XY_GALLERY = [
   { file: "photos/heartbeat-02.jpg", category: "heartbeat", title: "隐藏款", date: "MY FAVORITE", caption: "小鱼（环球限定版）" },
   { file: "photos/heartbeat-03.jpg", category: "heartbeat", title: "帅气の小鱼", date: "LITTLE MOMENTS", caption: "超级喜欢你给我发的自拍" },
   { file: "photos/heartbeat-04.jpg", category: "heartbeat", title: "超超超超喜欢的一集", date: "JUST YOU", caption: "原来喜欢一个人 真的会看不够" }
+  { file: "photos/heartbeat-05.jpg", category: "heartbeat", title: "获得新衣服新鞋子开心的小鱼", date: "Happy <><", caption: "哎 怎么就这么可爱啊啊啊" },
+  { file: "photos/heartbeat-06.jpg", category: "heartbeat", title: "开心旅游の小鱼", date: "TRAVEL~", caption: "欢迎收看《带着嘿嘿去旅行》" },
+  { file: "photos/heartbeat-07.jpg", category: "heartbeat", title: "和姐妹们干饭の小鱼", date: "FOOOOD", caption: "喜提新美瞳 太好看了！！" },
+  { file: "photos/heartbeat-08.jpg", category: "heartbeat", title: "带着项链诶", date: "NICKLANCE", caption: "我宣布这张封神了" }
 ];
