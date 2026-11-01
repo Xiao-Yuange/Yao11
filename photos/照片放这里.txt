@@ -1,0 +1,10 @@
+把照片重命名后放到这个文件夹：
+
+封面：cover.jpg（可选）
+我们的合照：together-01.jpg、together-02.jpg、together-03.jpg、together-04.jpg
+让我心动的你：heartbeat-01.jpg、heartbeat-02.jpg、heartbeat-03.jpg、heartbeat-04.jpg
+
+建议每张 jpg 压缩到 300KB~700KB，长边 1600 像素以内，手机加载更流畅。
+
+如果想添加更多照片，可在 gallery-data.js 文件中新增一行，例如：
+{ file: "photos/together-05.jpg", category: "together", title: "新的回忆", date: "2026.10.31", caption: "今天也很喜欢你。" },

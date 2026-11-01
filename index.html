@@ -1,716 +1,594 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f7c6d4" />
-  <meta name="description" content="一封写给肖瑶的信。" />
-  <title>To 肖瑶</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fbf8f3">
+  <meta name="description" content="我们的故事，从 2026 年 5 月 21 日 12:08 开始。">
+  <title>我们的故事 · 夏天宸 × 肖瑶</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <style>
-    :root {
-      --bg1: #fff4f7;
-      --bg2: #ffe8ef;
-      --paper: rgba(255,255,255,0.82);
-      --ink: #47313a;
-      --muted: #8b6671;
-      --accent: #d95b83;
-      --accent2: #ffc4d6;
-      --line: rgba(217,91,131,0.22);
-      --shadow: 0 22px 70px rgba(122, 49, 74, .18);
-      --radius: 28px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 18% 8%, rgba(255,255,255,.9) 0 15%, transparent 33%),
-        radial-gradient(circle at 88% 18%, rgba(255, 214, 226, .9) 0 12%, transparent 34%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x: hidden;
-      line-height: 1.82;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .32;
-      background-image:
-        linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, transparent, black 8%, black 88%, transparent);
-    }
-    .float-hearts {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .heart {
-      position: absolute;
-      bottom: -40px;
-      color: rgba(217,91,131,.22);
-      font-size: 18px;
-      animation: rise linear infinite;
-      filter: blur(.1px);
-    }
-    .heart:nth-child(1) { left: 8%; animation-duration: 13s; animation-delay: -1s; }
-    .heart:nth-child(2) { left: 23%; animation-duration: 17s; animation-delay: -7s; font-size: 26px; }
-    .heart:nth-child(3) { left: 41%; animation-duration: 15s; animation-delay: -3s; }
-    .heart:nth-child(4) { left: 63%; animation-duration: 19s; animation-delay: -10s; font-size: 24px; }
-    .heart:nth-child(5) { left: 82%; animation-duration: 14s; animation-delay: -5s; }
-    @keyframes rise {
-      from { transform: translateY(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: .7; }
-      to { transform: translateY(-110vh) rotate(18deg); opacity: 0; }
-    }
-    .unlock {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      display: grid;
-      place-items: center;
-      padding: 22px;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.92), rgba(255,232,239,.92)),
-        linear-gradient(135deg, #fff7fa, #ffe0ea);
-      transition: opacity .45s ease, visibility .45s ease;
-    }
-    .unlock.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .unlock-card {
-      width: min(470px, 100%);
-      padding: 32px 26px;
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 32px;
-      background: rgba(255,255,255,.78);
-      box-shadow: var(--shadow);
-      text-align: center;
-      backdrop-filter: blur(18px);
-    }
-    .seal {
-      width: 84px;
-      height: 84px;
-      margin: 0 auto 16px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #ffb8cf, #e55d88);
-      color: white;
-      font-size: 34px;
-      box-shadow: 0 16px 40px rgba(217,91,131,.35);
-    }
-    .unlock h1 {
-      margin: 0 0 8px;
-      font-size: clamp(28px, 6vw, 40px);
-      letter-spacing: .02em;
-    }
-    .unlock p {
-      margin: 8px 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-    .unlock input {
-      width: 100%;
-      margin: 18px 0 12px;
-      padding: 15px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(217,91,131,.26);
-      outline: none;
-      background: rgba(255,255,255,.9);
-      color: var(--ink);
-      font-size: 18px;
-      text-align: center;
-      letter-spacing: .12em;
-    }
-    .unlock input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(217,91,131,.12);
-    }
-    button {
-      border: 0;
-      border-radius: 999px;
-      cursor: pointer;
-      font: inherit;
-      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-    }
-    button:active { transform: scale(.98); }
-    .primary-btn {
-      width: 100%;
-      padding: 15px 20px;
-      background: linear-gradient(135deg, #e9638e, #c94b75);
-      color: white;
-      box-shadow: 0 14px 34px rgba(201,75,117,.28);
-      font-weight: 700;
-    }
-    .hint {
-      font-size: 13px !important;
-      opacity: .85;
-    }
-    .wrong {
-      min-height: 24px;
-      color: #be315b !important;
-      font-weight: 600;
-    }
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px max(18px, calc((100vw - 900px)/2));
-      background: rgba(255,244,247,.72);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(217,91,131,.12);
-    }
-    .brand {
-      font-weight: 800;
-      color: #b9446d;
-      letter-spacing: .04em;
-    }
-    .nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .nav a {
-      color: #9d4662;
-      text-decoration: none;
-      font-size: 14px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.5);
-    }
-    main {
-      position: relative;
-      z-index: 2;
-      width: min(900px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 40px 0 90px;
-    }
-    .hero {
-      min-height: 78vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 34px 0;
-    }
-    .letter-cover {
-      width: min(760px, 100%);
-      padding: clamp(30px, 7vw, 76px) clamp(24px, 7vw, 70px);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.72)),
-        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(217,91,131,.075) 32px);
-      border: 1px solid rgba(255,255,255,.9);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-    }
-    .letter-cover::after {
-      content: "♡";
-      position: absolute;
-      right: 28px;
-      bottom: 8px;
-      color: rgba(217,91,131,.13);
-      font-size: 140px;
-      line-height: 1;
-      transform: rotate(-12deg);
-    }
-    .kicker {
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-    .hero h1 {
-      margin: 10px 0 12px;
-      font-size: clamp(42px, 12vw, 86px);
-      line-height: 1.05;
-      color: #53303d;
-      font-family: "Songti SC", "STSong", "SimSun", serif;
-      font-weight: 800;
-    }
-    .subtitle {
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: clamp(17px, 4vw, 23px);
-      max-width: 520px;
-    }
-    .tiny-note {
-      margin-top: 24px;
-      color: #a66b7b;
-      font-size: 14px;
-    }
-    .scroll-btn {
-      margin-top: 28px;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 13px 22px;
-      border-radius: 999px;
-      color: white;
-      text-decoration: none;
-      background: linear-gradient(135deg, #e9638e, #c94b75);
-      box-shadow: 0 14px 34px rgba(201,75,117,.24);
-      font-weight: 700;
-    }
-    section {
-      margin: 24px 0;
-      padding: clamp(22px, 5vw, 44px);
-      border: 1px solid rgba(255,255,255,.86);
-      border-radius: var(--radius);
-      background: var(--paper);
-      box-shadow: 0 16px 48px rgba(122, 49, 74, .10);
-      backdrop-filter: blur(14px);
-    }
-    section h2 {
-      margin: 0 0 18px;
-      font-size: clamp(24px, 6vw, 38px);
-      color: #573340;
-      font-family: "Songti SC", "STSong", "SimSun", serif;
-    }
-    p {
-      margin: 0 0 1.15em;
-      font-size: clamp(16px, 3.6vw, 19px);
-      text-align: left;
-    }
-    .letter-body p::first-letter {
-      /* intentionally subtle */
-    }
-    .timeline {
-      position: relative;
-      padding-left: 18px;
-      border-left: 2px solid var(--line);
-    }
-    .memory-card {
-      position: relative;
-      margin: 0 0 18px;
-      padding: 18px 18px 16px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.67);
-      border: 1px solid rgba(217,91,131,.14);
-    }
-    .memory-card::before {
-      content: "";
-      position: absolute;
-      left: -26px;
-      top: 23px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 7px rgba(217,91,131,.12);
-    }
-    .date {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: #bd456d;
-      font-weight: 900;
-      letter-spacing: .03em;
-      background: rgba(255,196,214,.35);
-      padding: 3px 10px;
-      border-radius: 999px;
-    }
-    .memory-card p {
-      margin-bottom: 0;
-    }
-    .promise {
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,235,242,.76)),
-        radial-gradient(circle at 90% 10%, rgba(217,91,131,.16), transparent 34%);
-    }
-    .quote {
-      margin: 20px 0 0;
-      padding: 22px;
-      border-left: 4px solid var(--accent);
-      background: rgba(255,255,255,.58);
-      border-radius: 18px;
-      color: #66384a;
-      font-size: clamp(18px, 4vw, 23px);
-      font-weight: 800;
-      line-height: 1.8;
-    }
-    .sign {
-      text-align: right;
-      margin-top: 34px;
-      font-size: clamp(18px, 4vw, 22px);
-      color: #613240;
-      font-weight: 800;
-    }
-    .footer {
-      text-align: center;
-      color: #9b6675;
-      font-size: 14px;
-      margin-top: 26px;
-    }
-    .offline-tip {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.6);
-      color: #8b5567;
-      font-size: 14px;
-      text-align: center;
-      border: 1px dashed rgba(217,91,131,.25);
-    }
-    @media (max-width: 620px) {
-      .topbar { align-items: flex-start; }
-      .nav a { font-size: 12px; padding: 6px 8px; }
-      main { width: min(100% - 18px, 900px); padding-top: 22px; }
-      section { border-radius: 22px; }
-      .letter-cover { border-radius: 24px; }
-      .timeline { padding-left: 13px; }
-      .memory-card { padding: 15px 14px; }
-      .memory-card::before { left: -21px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .heart { animation: none; display: none; }
-      * { transition: none !important; }
-    }
-    @media print {
-      .unlock, .topbar, .float-hearts, .scroll-btn, .offline-tip { display: none !important; }
-      body { background: white; }
-      main { width: 100%; padding: 0; }
-      section, .letter-cover { box-shadow: none; border: 1px solid #eee; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="gallery-data.js"></script>
+  <script defer src="assets/app.js"></script>
 </head>
 <body>
-  <div class="float-hearts" aria-hidden="true">
-    <span class="heart">♡</span>
-    <span class="heart">❤</span>
-    <span class="heart">♡</span>
-    <span class="heart">❤</span>
-    <span class="heart">♡</span>
-  </div>
-
-  <div class="unlock" id="unlock">
-    <div class="unlock-card">
-      <div class="seal">💌</div>
-      <h1>一封给肖瑶的信</h1>
-      <p>不是离别信，是我们故事的第一本日记。</p>
-      <input id="passcode" inputmode="numeric" autocomplete="off" placeholder="输入我们的日期" maxlength="8" />
-      <button class="primary-btn" id="openBtn">打开这封信</button>
-      <p class="hint">提示：我们在一起的日期，四位数字。</p>
-      <p class="wrong" id="wrong"></p>
+  <div class="lock-screen" id="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-heading">
+    <div class="lock-card">
+      <div class="lock-flower">♡</div>
+      <div class="lock-kicker">a little story, just for you</div>
+      <h1 id="lock-heading">给肖瑶的一封信</h1>
+      <p>我们的故事，一直都还在继续。<br>请输入那一天的日期，翻开下一页。</p>
+      <form id="unlock-form">
+        <label for="passcode" class="smallcaps">OUR LITTLE SECRET</label>
+        <input type="password" id="passcode" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="· · · ·" aria-label="四位纪念日密码" autofocus>
+        <button type="submit">打开我们的故事 &nbsp; ↗</button>
+      </form>
+      <p class="lock-error" id="lock-error" aria-live="polite"></p>
+      <p class="lock-hint">提示：我们在一起的日期 · 4 位数字</p>
     </div>
   </div>
-
-  <header class="topbar">
-    <div class="brand">XTC × XY</div>
-    <nav class="nav" aria-label="页面导航">
-      <a href="#letter">信</a>
-      <a href="#memories">日记</a>
-      <a href="#promise">约定</a>
-    </nav>
+  <header class="header">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">XTC <span>×</span> XY.</a>
+      <nav class="nav-links" aria-label="网站导航">
+        <a href="#letter">给你的信</a>
+        <a href="#gallery">心动相册</a>
+        <a href="#diary">时光日记</a>
+        <a href="#promise">我们的以后</a>
+      </nav>
+    </div>
   </header>
-
-  <main>
-    <div class="hero">
-      <div class="letter-cover">
-        <div class="kicker">For you</div>
-        <h1>To：肖瑶</h1>
-        <p class="subtitle">未来很远，但我会一直牵着你的手。</p>
-        <div class="tiny-note">从 5 月 21 号开始，到很多很多年以后。</div>
-        <a class="scroll-btn" href="#letter">慢慢打开 ↓</a>
-      </div>
-    </div>
-
-    <section id="letter" class="letter-body">
-      <h2>不知道这是你第几次打开这封信</h2>
-      <p>不知道这是你第几次打开这封信。</p>
-<p>可能是第一次，也可能已经是第一百次了。但我希望，不管是哪一次，你看到它的时候，都能有个好心情！</p>
-<p>写这封信的时候，我总觉得自己好像在写一封离别信。可是我不想把它叫作离别信，因为我从来没有把这次分别当成真正的分开。</p>
-<p>高中毕业只是我们人生里一个阶段的结束，不是我们的结束。我们以后在一起的时间还长着呢。我希望未来的你再打开这封信的时候，我还在你身边，或者至少，我们还在坚定地走向彼此。</p>
-<p>其实每次想起我们刚认识的时候，我都觉得很神奇。</p>
-    </section>
-
-    <section id="memories">
-      <h2>我们的第一本日记</h2>
-      <div class="timeline">
-        <article class="memory-card">
-        <div class="date">5月21号</div>
-        <p>英语课下课，我鼓起勇气去问你 prom 的事。现在想起来，还是会觉得很梦幻，好像命运就是从那一刻开始，悄悄把我们往一起推。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月22号</div>
-        <p>prom 那天，我们明明都想找对方，却又刚好错过。你穿着黑色礼服出现在我视野里的时候，我真的觉得你像 prom 的女主角。而我只是一个平平无奇的人，甚至有点不敢靠近你。我怕你只是客气，怕我太自来熟，怕你其实并不想和我聊天。可是后来你问我要不要一起拍照。那一刻我真的很庆幸，幸好我来了，幸好我没有错过你。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月23号</div>
-        <p>你凌晨给我返图。很巧的是，五分钟后我居然莫名其妙醒了，还刚好看到了你的消息。我立刻回你，可是你好像一开始不太想理我。后来早上我又打开聊天框，找话题和你说话，你才回我。那天你还帮我拼了我们的合照，虽然照片刚发出去就被吐槽 P 得太过了，但我还是很开心，因为那是我们故事开始的证据。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月24号</div>
-        <p>早上醒来看到你给我发消息，我开心得不行，结果仔细一看，居然是 Kelly 加我微信。那天一下午我都很想给你发点什么，可是朋友一直让我别主动。我就忍着冲动，和他们打了一天 CSGO。可是到了晚上，是你先来问我明天去不去学校。那一刻我真的特别开心，因为我知道，你也是有一点想见我的。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月25号</div>
-        <p>不出所料这应该是我给你这封信时刚好一个月前，我们在这天才算是真正开始玩了吧！我们这天打粥一直打到第二天凌晨！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月26号</div>
-        <p>这天我们一起出去玩飞盘了，还打了篮球！回了家还一起打了三角洲，一直打到第二天凌晨哦～</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月27号</div>
-        <p> 我们聊了很多有意思的事情，还一起玩了三角洲，这就是我们一起玩光遇的那天哟～而且那天我就和你说过了，诅咒消失，我们以后不会再分开啦！这天你还下载了第五人格陪我玩！我们这天也玩到了第二天凌晨！！！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月28号</div>
-        <p>今天虽然是在复习数学啦，但是我们第一次呆了一整节p4！！！然后就在这天下午你还邀请我周六一起去Grand Bend！我超级超级超级期待那天！我们这天也打粥打到了第二天哟</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月29号</div>
-        <p>这天我们放学后两个人都有事，但是晚上开始一直聊天聊到四点半！！而且这天还不一般哟～</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月30号</div>
-        <p>我们一起去了湖边！超级好玩超级开心 暧昧真好啊嘻嘻 你真的好好玩！！！你为什么要不敢说出来…大胆说嘛我一定会同意的！ 但是这天晚上打电话我还是没忍住说出来了啊… 我们也算是在后一天凌晨算是表明心意了！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">5月31号</div>
-        <p>是我们在一起的第一天。我们一起去 Masonville 写作业，又一路散步到 Western 校园里。那天发生了我人生第一次牵手。牵到你手的那一瞬间，我大脑真的一片空白，耳朵也红得不行。明明只是牵手，可是对我来说，那一刻特别特别珍贵。因为从那一刻开始，我真的感觉到：你是我女朋友了。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月1号</div>
-        <p>我们在一起的第二天！你带着我在食堂一起看五哈！根本看不进去…因为你把腿架我腿上了，好亲密，好甜，好开心！这天是你第一次和我打语音陪我上课！到家后你睡着了…我好想好想你！我们第一次完整地打着语音睡觉（因为昨天的中间断了）！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月2号</div>
-        <p>今天我们又在学校里一起牵手看综艺！而且放学后还有约会！放学了你送给了我一颗巧克力！我们还一起去了梅森取了钱然后去买了情侣挂件！好开心！还知道了哪有盒饭（）</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月3号</div>
-        <p>今天你的考试成绩发下来啦，考的很好哟～嗯那个辣味糖果的糖纸还在我包里放着呢。今天中午还在图书馆给你讲unit8的东西，你往我身上一贴我直接大脑一片空白了。今天还是我妈妈的生日，全程和你打着语音好开心！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月4号</div>
-        <p>今天你给了我一根头绳！！！我带着真的好开心！我们一起在食堂拍了好多照片！你还给了我折了小花花！放学了我们还去打了网球！你给我带了冰红茶，在网球场边的小树林你第一次亲了我的脸！！！！我也正式和你说了我的表白计划嘿嘿！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月5号</div>
-        <p>今天放学后我去上课了但是你一直挂着语音陪我哟～你和Lisa去了梅森给我买了大黄，还写了情书！我真的好开心！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月6号</div>
-        <p>天真是个好日子呀～我们去约会咯～ 我们先是打了网球！（但是我把你的项链弄坏了…）（我们在lisa家第一次亲嘴了！！！！！！！！）然后去了downtown拿了花，今天是正式和你表白哟，从今天开始我算是彻彻底底赖上你了！大黄和情书我真的超级超级喜欢！我在此宣誓，我夏天宸一定要让肖瑶成为世界上最幸福的女孩！我们也是正式官宣了哟～ 不是随便说说的那种，是真的想做到。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月7号</div>
-        <p>我们换了 QQ 情头。我还骑着车来找你。你给我头上扎了个大蒜，走之前还被我的头发笑死。和你在一起的时候，我经常觉得自己有点傻，但我又特别喜欢这种傻。因为只有在你面前，我才会这么放松，这么开心。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月8号</div>
-        <p>是我第一次坐校车，也是我们第一次一起去麦当劳。表面上说是做 PPT，我们在那真的是越来无法无天了 明明第一次去不是那样的。我还被迫自愿穿女仆装了…</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月9号</div>
-        <p>今天我们又一起去麦当劳学习了哟！我还顺走了你的黑框眼镜，我要是带上能像雨宫莲一样帅就好了…… 那天我们立了一个誓：美东时间 2026 年6月10号凌晨2:26，我们在各自的床上约定，永远不成为对方的遗憾。就算以后异国，就算大学很忙，我们也一定要把恋爱谈得很好玩、很有趣，熬过大学，永不分离。宝宝，我真的一直记得。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月10号</div>
-        <p>宝宝 我想了解你的一切。了解你的原生家庭了解你的伤疤 了解你的苦楚  了解你的不甘  了解你每天为什么有那么多的不开心为什么有那么多的不容易 想知道你小时候是什么样子的,你的痛苦,你的悲伤你的疼痛,你爱吃的菜,爱吃的水果爱喝的什么酸奶,爱看什么类型的电视,爱看什么类型的电影,喜欢小猫还是小狗,你上一段的恋情,你是否已经走出来了,在乎你的情绪你的眼泪,你抽的每一根烟,以及每一个回眸,以及你说爱我的每个瞬间每一秒,爱你的胡思乱想,爱你的嘴硬,我想了解你的一切 所以看看腿。那天我还告诉了我妈妈我们在一起的事。那一刻我真的很开心，因为我再也不用偷偷摸摸地喜欢你了。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月11号</div>
-        <p>嘿嘿今天我拉着gxy去给你买毕业礼物啦～但是被你看出来了……那咋了看出来咋了 我就要送你礼物！明天就是毕业典礼啦 好期待！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月12号</div>
-        <p>今天是毕业典礼！！！可惜你感冒太严重了只能呆在家里但是我也上一节课就回家陪你啦嘻嘻！没有你的学校一点意思都没有！为什么你的第一个jelly cat是你住家阿姨送的！！！！为什么！！！！！！不！！！！！！！嘿嘿但是我们领证啦！好开心！能一直和你在一起真好啊！！！毕业有你真好啊！你说我最好发一个自己一个人的毕业朋友圈但是我已经认定你了，我不会丢下你的！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月13号</div>
-        <p>今天我们一起去吃了盒饭！还去宠物店撸猫了！我们还一起吃了一个冰激凌！在downtown的小湖边散步，在游乐园一起玩！还有嘿嘿和大黄的合照！完美的一家四口！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月14号</div>
-        <p>我们一起去拼豆。第一次拼豆真的很好玩，和你待那么久也很安心。我很喜欢你拼的钥匙圈。只是我高估了自己的速度，让你等了那么久。可是你没有生气，你只是陪着我。和你在一起，我经常会有这种感觉：我好像不用那么完美，也可以被你喜欢。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月15号</div>
-        <p>嘻嘻今天早上就给你解释了霸王龙形态！今天你忘记把耳机还给我了！所以你上课后又出来给我耳机，我们还亲亲了！你好像拿舌头舔了我一下，这触发了我的奇妙开关于是我回家路上就开始搜索第一次亲嘴需要注意什么了（（（。今天我们还去麦当劳学习啦，虽然学了一会儿我就去上课了！但是放学后还是待在一起了哟！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月16号</div>
-        <p>今天早上我们在学校里第一次深吻了！！！！！我们放学后一起去Lisa家录英语tedtalk了！好耶我们都拿了80分！然后还在厕所里好好亲了一亲，我勒个豆居然亲了两个小时……还给你种了草莓哟———</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月17号</div>
-        <p>今天我们一起换了qq音乐的情头！在学校里还和你kiss了！我们还在麦当劳的情侣专座大亲特亲了！我对着你的肚子一顿猛摸你告诉我摸肚子会有感觉？！居然会这样？！！！究竟是人性的扭曲还是道德的沦丧！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月18号</div>
-        <p>今天是上学的最后一天！！在学校遇到了许多奇妙的事情，而且人太多了都亲不了！！！！！可是我还是很开心。因为这是高中最后一天，而我的身边有你。不过真是最疯狂的一天！再也不会去麦当劳了…再也不神秘了！！！！不过真好捏呀嘿嘿嘿）。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月19号</div>
-        <p>今天你给我编了彩绳！好开心！我们在学校趁着没人真是越来越猖狂了！！！嘿嘿我们考完试还一起去散步啦！小树林kisskiss！真是完美的一天呀～</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月20号</div>
-        <p>我们一起去摘草莓了！嘿嘿你的锁骨上也有草莓哦———我们还在Lisa家“认真学习”了一下午！今天下雨了，我失去了你的彩绳———不———</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月21号</div>
-        <p>今天真是刺激的的一天啊 Lisa神秘的住家还是太来无影去无踪了，谢谢你请我喝奶茶呀～很开心能让你幸福的哭出来！也谢谢你一直在安慰我呀～但是继麦当劳之后我们又损失了一个重要根据地！！！嘿嘿我们还换了微信的情头！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月22号</div>
-        <p>诶嘿今天说是复习其实去逛街了！好开心！和你逛街真有意思呀，看着那么多商品想象你用化妆品的样子，想象你穿上好看衣服的样子真开心！和你牵着手逛街真好！我想永远牵住你的手不放开！发明那个软件的人真是个天才，我俩也是都愿打愿挨啊！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月23号</div>
-        <p>诶嘿终于更新到最新一话啦，今天醋坛子真是大翻特翻但是宝宝你真好，一直给我解释给我安全感我真的好喜欢好喜欢好喜欢你！跟你在一起的每一分每一秒都好开心！和你打视频看着你的样子也超级喜欢！怎么样的你我都好喜欢啊啊啊啊！嘿嘿还在你腿上写了xtc爱xy！好开心！我们明天一起去看电影吧！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月24号</div>
-        <p>今天我们真的去看电影了！！！这电影真是好看，真是刺激啊，一点没看进去（ 但是今天你穿的真的好好看！！！！彻底沦陷！第一次摸穿丝袜的腿，一碰到脑子已经快烧焦了......希望我们享受剩下的几天！！！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月25号</div>
-        <p>看你一个人整理如此煎熬实在是于心不忍，一整天见不到你我真的忍不了啊！！！还好天助我也Lisa可以一起来！说起来这衣帽间可真是个凶险的地方啊！Lisa：我也是你们play的一环吗（？）嘿嘿今天还和你一起打着语音睡觉了！看到了你的睡颜哦～</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月26号</div>
-        <p>明天你就要去干妈那了……今天可能是我们加拿大的最后一天吗……一起去吃了烧烤，还拍了人生四格！好开心！很开心我最后取消了行程回来找你了！我实在是接受不了这么草率的道别啊！！！本来我不想在你面前哭的…但是实在没忍住啊……宝宝，答应我一件事好吗，下次道别不要去小树林了，一腿的蚊子包实在是太舒服了。。。</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月27号</div>
-        <p>天助我也———— 上天送给了我们最后一天！！不管干什么只要和你在一起就超级开心！Lisa的极品炸鱼号确实好玩）今天我们分别都没哭哦！这绝对不会是我们现实见面的最后一天！今天你问我为什么每次都是12:08跟你说我会永远喜欢你，因为我们的缘分是从那节英语课下课开始的！从2026年5月21号的中午12:08分开始 我们的故事迎来了第一个字符！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月28号</div>
-        <p>今天是我们没法见面的第一天……宝宝我好想好想你啊！！！！！！ 去干妈家玩的开心呀～明天下午我就要登机啦 晚上你也要登机啦 我们大家都平平安安安的！宝宝我们国内见！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月29号</div>
-        <p>在飞机上度过的一天！能和你在飞机上发消息真好啊！！！！好想你……才第二天就这么想你了，好难熬啊！！！！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">6月30号</div>
-        <p>到家了！！！好开心！你要到明天凌晨五点才到呀～嘿嘿我已经定好闹钟！看我五点来和你打语音！宝宝我好想你！说不定你会提前到 那不行我得把闹钟调早点！超级超级想你！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月1号</div>
-        <p>你平安落地hk我就放心啦！但是还是好担心你毕竟只有你一个人嘛……要是我也在一起玩就好了！可惜我港澳通行证在国内…… 不过你去了好多只在港片里看过的地方！还带嘿嘿打卡了！真好！最后还平安落地北京啦，玩的开心！我会永远喜欢你哒宝宝！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月2号</div>
-        <p>宝宝————对不起….我知道你在和你的好朋友们玩还在一直问一直问，我太烦了！！！！我会改正的！不要不喜欢我啊……我真的超级超级超级超级喜欢你的！我一定不会这么烦了！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月3号</div>
-        <p>宝宝早上和我打语音了嘿嘿嘿！宝宝安慰我了！嘿嘿嘿！宝宝是一直陪我挂着语音！每天都更加喜欢你了！！！！！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月4号</div>
-        <p>诶打三个小时篮球好厉害！宝宝你为了我直接鸽了我兄弟！嘿嘿嘿好开心！把你占为己有了！我好喜欢你呀！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月5号</div>
-        <p>老师我有点死了…怎么和阿姨说了！！！！！要干嘛！！不——————从今天开始你就要去惨无人道的集中营了———不要啊！！！！高僧预测一波 你会在课上大睡特睡！不过加油呀！嘿嘿你们怎么知道全世界最好的宝宝xy给我点了饮料！怕我不喜欢还给我点了两杯！！！关于雅思：宝宝你最最最棒啦肯定可以轻轻松松考出来的！好想好想你！！！</p>
-    </article>
-        <article class="memory-card">
-        <div class="date">7月6号</div>
-        <p>能给你点好吃的好开心！真的好想好想你！每天都好想你，一打开手机就在想你！！！！我昨天预测什么来着 今天是不是超级困！最了解的一集好吧</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月7号</div>
-        <p>今天去吃饭的路上我看着手腕上的皮筋陷入了沉思，我们见面了一起去买好看的情侣手链吧！（默默怀念彩绳中）好像和你一起戴好多好看的东西！我也很想更新网站的((( 但是没招啊 我这桌子听说明天才能到，明天看看能不能登上外网更新一下！宝宝今天也好想好想你！超级喜欢你！每天都比前一天更喜欢你一点！我点的饮料好喝嘛，我想每天都给你投喂！</p>
-    </article>
-<article class="memory-card">
-        <div class="date">7月8号</div>
-       <p>已于今天成功打开网站，望周知！对不起宝宝我一直睡错过和你休息时间了啊啊啊啊好想和你打视频好想和你打语音我自己没珍惜啊啊啊啊啊！但是当你和我说没睡是想和我说晚安的时候我的心真的又一次被你击中了啊啊啊啊啊啊啊啊啊啊啊啊啊！对于这样疯狂和信任的行为我真的毫无抵抗力，万一我一直没醒那你不没的睡了！但是好喜欢好喜欢好喜欢啊啊啊啊好喜欢啊宝宝好喜欢和你在一起干什么都喜欢，抱抱喜欢，亲亲喜欢，对你大摸特摸也喜欢，吃饭喜欢，玩游戏喜欢，聊荤内容也喜欢！好喜欢好喜欢好喜欢你 超级超级超级爱你！什么样的你我都好喜欢，学习的你我喜欢，玩游戏得你我喜欢，洗澡的你我没见过但肯定喜欢（看看）！</p>
-    </article>
+  <main id="top">
+    <section class="hero" aria-label="故事首页">
+      <div class="wrap hero-inner">
+        <div class="hero-copy fade-up">
+          <div class="eyebrow">OUR LITTLE FOREVER · 2026</div>
+          <h1>原来，<br>故事真的<br>可以<em>很长。</em></h1>
+          <p class="hero-desc">从那节英语课下课，到现在隔着屏幕说晚安。<br>我们没有停在毕业那一天，我们还在认真地相爱。</p>
+          <div class="hero-caption">
+            <div class="hero-stat"><strong id="days-count">—</strong><small>天的喜欢</small></div>
+            <div class="hero-stat"><strong class="time">12:08</strong><small>故事开始</small></div>
+          </div>
+          <a href="#gallery" class="pill-btn">看看我们的照片 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art fade-up" aria-label="我们的故事封面">
+          <div class="paper-shadow"></div>
+          <div class="cover-frame" id="cover-frame">
+            <img id="cover-image" src="photos/cover.jpg" alt="我们的故事封面合照" loading="eager">
+            <div class="cover-placeholder"><span class="cover-monogram">X &amp; Y</span><small>something beautiful began</small><span style="font-size:28px">♡</span></div>
+          </div>
+          <span class="tape" aria-hidden="true"></span>
+          <div class="hero-stamp">made of<br>memories<small>EST. 05.21</small></div>
+        </div>
       </div>
     </section>
-
-    <section id="promise" class="letter-body promise">
-      <h2>不是高中限定，是想带去未来的人</h2>
-      <p>宝宝，其实我知道，你会害怕。</p>
-<p>你怕我们一毕业就分开，怕我现在说的未来都只是画饼，怕异国，怕大学，怕时间，怕新环境，怕有一天我们慢慢变淡。</p>
-<p>我不想用一句“你别怕”就让你相信我。</p>
-<p>因为真正的安全感不是靠一句话给的，是靠以后一天一天做出来的。</p>
-<p>我不能保证未来永远没有困难，也不能保证我们永远不会吵架、不会委屈、不会想太多。可是我能保证的是，只要我们还喜欢彼此，我就不会轻易放手。</p>
-<p>我会认真回消息，会主动报备，会在你不开心的时候哄你，会在你没有安全感的时候给你安全感，会把你放进我的计划里，而不是只放进我的嘴上。</p>
-<p>我想和你一起把异国恋谈得很好玩。</p>
-<p>想和你分享每天发生的小事，想和你打电话睡觉，想和你一起看电影，想听你吐槽，想陪你开心，也想陪你难过。想在大学里继续爱你，想在很多年后再和你一起回头看这封信，然后笑我们当时怎么这么幼稚、这么认真、这么可爱。</p>
-<p>肖瑶，我真的很喜欢你。</p>
-<p>不是只喜欢你漂亮的样子，不是只喜欢你开心的时候，也不是只喜欢我们刚在一起的新鲜感。我喜欢你的小脾气，喜欢你的嘴硬，喜欢你给我的安全感，喜欢你愿意陪我玩，喜欢你认真安慰我，喜欢你靠近我的时候，喜欢你说爱我的每一秒。</p>
-<p>你不是我的高中限定。</p>
-<p>你是我想带去未来的人。</p>
-<p>所以这封信不是结束，也不是告别。</p>
-<p>它只是我们故事的第一本日记，是从 5 月 21 号到现在的证明。以后我们还会有很多很多天，很多很多新的日期，很多很多新的回忆。等以后我们再打开这封信的时候，我希望我们可以一起接着往下写。</p>
-<p>我夏天宸和肖瑶，约定过永远不成为对方的遗憾。</p>
-<p>我会记得。</p>
-<p>我也会做到。</p>
-<p>毕业快乐，宝宝。</p>
-<p>未来很远，但我会一直牵着你的手。</p>
-      <div class="quote">我夏天宸和肖瑶，约定过永远不成为对方的遗憾。</div>
-      <div class="sign">From：赖上你的夏天宸</div>
-      <div class="offline-tip">上飞机前打开一次这页；如果网页已经加载好，没网时也能继续慢慢看。</div>
+    <div class="marquee"><span>✳</span> 有些故事不需要结局，只需要一直写下去 <span>✳</span></div>
+    <section class="section letter-section" id="letter">
+      <div class="wrap">
+        <div class="section-head fade-up"><div><div class="smallcaps">01 / A LETTER FOR YOU</div><h2>写给你的话</h2></div><p class="section-sub">那些当面说不完的话，就留在这里，给未来每一次打开它的你。</p></div>
+        <div class="paper-letter fade-up"><div class="letter-meta">To : 肖瑶</div><h3>不知道这是你第几次打开这封信</h3><div class="letter-text">
+        <p>不知道这是你第几次打开这封信。</p>
+        <p>可能是第一次，也可能已经是第一百次了。但我希望，不管是哪一次，你看到它的时候，都能有个好心情！</p>
+        <p>写这封信的时候，我总觉得自己好像在写一封离别信。可是我不想把它叫作离别信，因为我从来没有把这次分别当成真正的分开。</p>
+        <p>高中毕业只是我们人生里一个阶段的结束，不是我们的结束。我们以后在一起的时间还长着呢。我希望未来的你再打开这封信的时候，我还在你身边，或者至少，我们还在坚定地走向彼此。</p>
+        <p>其实每次想起我们刚认识的时候，我都觉得很神奇。</p>
+        </div><p class="promise-sign">— 赖上你的夏天宸</p></div>
+      </div>
     </section>
-
-    <div class="footer">Made with love · 2026</div>
+    <section class="section gallery-section" id="gallery">
+      <div class="wrap">
+        <div class="section-head fade-up"><div><div class="smallcaps">02 / THE WAY I SEE US</div><h2>我们的心动相册</h2></div><p class="section-sub">一半是我们一起走过的路，一半是镜头里让我反复心动的你。</p></div>
+        <div class="album-controls">
+          <div class="album-tabs" role="group" aria-label="相册分类">
+            <button class="tab active" type="button" data-filter="all" aria-pressed="true">全部照片</button>
+            <button class="tab" type="button" data-filter="together" aria-pressed="false">我们的合照</button>
+            <button class="tab" type="button" data-filter="heartbeat" aria-pressed="false">让我心动的你</button>
+          </div>
+          <span class="album-count" id="album-count">正在整理相册…</span>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+        <p class="album-note">每一张照片，都有一个我舍不得忘记的瞬间。 ♡</p>
+      </div>
+    </section>
+    <section class="section diary-section" id="diary">
+      <div class="wrap">
+        <div class="section-head fade-up"><div><div class="smallcaps">03 / DEAR DIARY</div><h2>我们的时光日记</h2></div><p class="section-sub">原封不动地留着那些时候的语气。以后再看，应该会笑出声吧。</p></div>
+        <div class="diary-tools">
+          <div class="month-tabs" role="group" aria-label="按月份查看日记">
+            <button class="tab active" type="button" data-month="all" aria-pressed="true">全部</button>
+            <button class="tab" type="button" data-month="5" aria-pressed="false">五月</button>
+            <button class="tab" type="button" data-month="6" aria-pressed="false">六月</button>
+            <button class="tab" type="button" data-month="7" aria-pressed="false">七月</button>
+          </div>
+          <div class="diary-actions">
+            <input class="diary-search" id="diary-search" type="search" placeholder="搜索一个日期或回忆…" aria-label="搜索日记">
+            <button class="text-btn" id="expand-all" type="button">展开全部</button>
+          </div>
+        </div>
+        <div class="diary-list" id="diary-list">
+<details class="diary-entry" data-month="5" data-text="5月21号 英语课下课，我鼓起勇气去问你 prom 的事。现在想起来，还是会觉得很梦幻，好像命运就是从那一刻开始，悄悄把我们往一起推。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 21</span>
+          <span class="diary-preview">英语课下课，我鼓起勇气去问你 prom 的事。现在想起来，还是会觉得很梦幻，好像命运就是从那一刻…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>英语课下课，我鼓起勇气去问你 prom 的事。现在想起来，还是会觉得很梦幻，好像命运就是从那一刻开始，悄悄把我们往一起推。</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月22号 prom 那天，我们明明都想找对方，却又刚好错过。你穿着黑色礼服出现在我视野里的时候，我真的觉得你像 prom 的女主角。而我只是一个平平无奇的人，甚至有点不敢靠近你。我怕你只是客气，怕我太自来熟，怕你其实并不想和我聊天。可是后来你问我要不要一起拍照。那一刻我真的很庆幸，幸好我来了，幸好我没有错过你。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 22</span>
+          <span class="diary-preview">prom 那天，我们明明都想找对方，却又刚好错过。你穿着黑色礼服出现在我视野里的时候，我真的觉得…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>prom 那天，我们明明都想找对方，却又刚好错过。你穿着黑色礼服出现在我视野里的时候，我真的觉得你像 prom 的女主角。而我只是一个平平无奇的人，甚至有点不敢靠近你。我怕你只是客气，怕我太自来熟，怕你其实并不想和我聊天。可是后来你问我要不要一起拍照。那一刻我真的很庆幸，幸好我来了，幸好我没有错过你。</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月23号 你凌晨给我返图。很巧的是，五分钟后我居然莫名其妙醒了，还刚好看到了你的消息。我立刻回你，可是你好像一开始不太想理我。后来早上我又打开聊天框，找话题和你说话，你才回我。那天你还帮我拼了我们的合照，虽然照片刚发出去就被吐槽 P 得太过了，但我还是很开心，因为那是我们故事开始的证据。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 23</span>
+          <span class="diary-preview">你凌晨给我返图。很巧的是，五分钟后我居然莫名其妙醒了，还刚好看到了你的消息。我立刻回你，可是你好…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>你凌晨给我返图。很巧的是，五分钟后我居然莫名其妙醒了，还刚好看到了你的消息。我立刻回你，可是你好像一开始不太想理我。后来早上我又打开聊天框，找话题和你说话，你才回我。那天你还帮我拼了我们的合照，虽然照片刚发出去就被吐槽 P 得太过了，但我还是很开心，因为那是我们故事开始的证据。</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月24号 早上醒来看到你给我发消息，我开心得不行，结果仔细一看，居然是 Kelly 加我微信。那天一下午我都很想给你发点什么，可是朋友一直让我别主动。我就忍着冲动，和他们打了一天 CSGO。可是到了晚上，是你先来问我明天去不去学校。那一刻我真的特别开心，因为我知道，你也是有一点想见我的。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 24</span>
+          <span class="diary-preview">早上醒来看到你给我发消息，我开心得不行，结果仔细一看，居然是 Kelly 加我微信。那天一下午我…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>早上醒来看到你给我发消息，我开心得不行，结果仔细一看，居然是 Kelly 加我微信。那天一下午我都很想给你发点什么，可是朋友一直让我别主动。我就忍着冲动，和他们打了一天 CSGO。可是到了晚上，是你先来问我明天去不去学校。那一刻我真的特别开心，因为我知道，你也是有一点想见我的。</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月25号 不出所料这应该是我给你这封信时刚好一个月前，我们在这天才算是真正开始玩了吧！我们这天打粥一直打到第二天凌晨！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 25</span>
+          <span class="diary-preview">不出所料这应该是我给你这封信时刚好一个月前，我们在这天才算是真正开始玩了吧！我们这天打粥一直打到…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>不出所料这应该是我给你这封信时刚好一个月前，我们在这天才算是真正开始玩了吧！我们这天打粥一直打到第二天凌晨！</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月26号 这天我们一起出去玩飞盘了，还打了篮球！回了家还一起打了三角洲，一直打到第二天凌晨哦～">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 26</span>
+          <span class="diary-preview">这天我们一起出去玩飞盘了，还打了篮球！回了家还一起打了三角洲，一直打到第二天凌晨哦～</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>这天我们一起出去玩飞盘了，还打了篮球！回了家还一起打了三角洲，一直打到第二天凌晨哦～</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月27号  我们聊了很多有意思的事情，还一起玩了三角洲，这就是我们一起玩光遇的那天哟～而且那天我就和你说过了，诅咒消失，我们以后不会再分开啦！这天你还下载了第五人格陪我玩！我们这天也玩到了第二天凌晨！！！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 27</span>
+          <span class="diary-preview">我们聊了很多有意思的事情，还一起玩了三角洲，这就是我们一起玩光遇的那天哟～而且那天我就和你说过了…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p> 我们聊了很多有意思的事情，还一起玩了三角洲，这就是我们一起玩光遇的那天哟～而且那天我就和你说过了，诅咒消失，我们以后不会再分开啦！这天你还下载了第五人格陪我玩！我们这天也玩到了第二天凌晨！！！</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月28号 今天虽然是在复习数学啦，但是我们第一次呆了一整节p4！！！然后就在这天下午你还邀请我周六一起去Grand Bend！我超级超级超级期待那天！我们这天也打粥打到了第二天哟">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 28</span>
+          <span class="diary-preview">今天虽然是在复习数学啦，但是我们第一次呆了一整节p4！！！然后就在这天下午你还邀请我周六一起去G…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天虽然是在复习数学啦，但是我们第一次呆了一整节p4！！！然后就在这天下午你还邀请我周六一起去Grand Bend！我超级超级超级期待那天！我们这天也打粥打到了第二天哟</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月29号 这天我们放学后两个人都有事，但是晚上开始一直聊天聊到四点半！！而且这天还不一般哟～">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 29</span>
+          <span class="diary-preview">这天我们放学后两个人都有事，但是晚上开始一直聊天聊到四点半！！而且这天还不一般哟～</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>这天我们放学后两个人都有事，但是晚上开始一直聊天聊到四点半！！而且这天还不一般哟～</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月30号 我们一起去了湖边！超级好玩超级开心 暧昧真好啊嘻嘻 你真的好好玩！！！你为什么要不敢说出来…大胆说嘛我一定会同意的！ 但是这天晚上打电话我还是没忍住说出来了啊… 我们也算是在后一天凌晨算是表明心意了！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 30</span>
+          <span class="diary-preview">我们一起去了湖边！超级好玩超级开心 暧昧真好啊嘻嘻 你真的好好玩！！！你为什么要不敢说出来…大胆…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>我们一起去了湖边！超级好玩超级开心 暧昧真好啊嘻嘻 你真的好好玩！！！你为什么要不敢说出来…大胆说嘛我一定会同意的！ 但是这天晚上打电话我还是没忍住说出来了啊… 我们也算是在后一天凌晨算是表明心意了！</p></div>
+      </details>
+<details class="diary-entry" data-month="5" data-text="5月31号 是我们在一起的第一天。我们一起去 Masonville 写作业，又一路散步到 Western 校园里。那天发生了我人生第一次牵手。牵到你手的那一瞬间，我大脑真的一片空白，耳朵也红得不行。明明只是牵手，可是对我来说，那一刻特别特别珍贵。因为从那一刻开始，我真的感觉到：你是我女朋友了。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 05 . 31</span>
+          <span class="diary-preview">是我们在一起的第一天。我们一起去 Masonville 写作业，又一路散步到 Western 校…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>是我们在一起的第一天。我们一起去 Masonville 写作业，又一路散步到 Western 校园里。那天发生了我人生第一次牵手。牵到你手的那一瞬间，我大脑真的一片空白，耳朵也红得不行。明明只是牵手，可是对我来说，那一刻特别特别珍贵。因为从那一刻开始，我真的感觉到：你是我女朋友了。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月1号 我们在一起的第二天！你带着我在食堂一起看五哈！根本看不进去…因为你把腿架我腿上了，好亲密，好甜，好开心！这天是你第一次和我打语音陪我上课！到家后你睡着了…我好想好想你！我们第一次完整地打着语音睡觉（因为昨天的中间断了）！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 01</span>
+          <span class="diary-preview">我们在一起的第二天！你带着我在食堂一起看五哈！根本看不进去…因为你把腿架我腿上了，好亲密，好甜，…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>我们在一起的第二天！你带着我在食堂一起看五哈！根本看不进去…因为你把腿架我腿上了，好亲密，好甜，好开心！这天是你第一次和我打语音陪我上课！到家后你睡着了…我好想好想你！我们第一次完整地打着语音睡觉（因为昨天的中间断了）！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月2号 今天我们又在学校里一起牵手看综艺！而且放学后还有约会！放学了你送给了我一颗巧克力！我们还一起去了梅森取了钱然后去买了情侣挂件！好开心！还知道了哪有盒饭（）">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 02</span>
+          <span class="diary-preview">今天我们又在学校里一起牵手看综艺！而且放学后还有约会！放学了你送给了我一颗巧克力！我们还一起去了…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天我们又在学校里一起牵手看综艺！而且放学后还有约会！放学了你送给了我一颗巧克力！我们还一起去了梅森取了钱然后去买了情侣挂件！好开心！还知道了哪有盒饭（）</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月3号 今天你的考试成绩发下来啦，考的很好哟～嗯那个辣味糖果的糖纸还在我包里放着呢。今天中午还在图书馆给你讲unit8的东西，你往我身上一贴我直接大脑一片空白了。今天还是我妈妈的生日，全程和你打着语音好开心！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 03</span>
+          <span class="diary-preview">今天你的考试成绩发下来啦，考的很好哟～嗯那个辣味糖果的糖纸还在我包里放着呢。今天中午还在图书馆给…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天你的考试成绩发下来啦，考的很好哟～嗯那个辣味糖果的糖纸还在我包里放着呢。今天中午还在图书馆给你讲unit8的东西，你往我身上一贴我直接大脑一片空白了。今天还是我妈妈的生日，全程和你打着语音好开心！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月4号 今天你给了我一根头绳！！！我带着真的好开心！我们一起在食堂拍了好多照片！你还给了我折了小花花！放学了我们还去打了网球！你给我带了冰红茶，在网球场边的小树林你第一次亲了我的脸！！！！我也正式和你说了我的表白计划嘿嘿！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 04</span>
+          <span class="diary-preview">今天你给了我一根头绳！！！我带着真的好开心！我们一起在食堂拍了好多照片！你还给了我折了小花花！放…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天你给了我一根头绳！！！我带着真的好开心！我们一起在食堂拍了好多照片！你还给了我折了小花花！放学了我们还去打了网球！你给我带了冰红茶，在网球场边的小树林你第一次亲了我的脸！！！！我也正式和你说了我的表白计划嘿嘿！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月5号 今天放学后我去上课了但是你一直挂着语音陪我哟～你和Lisa去了梅森给我买了大黄，还写了情书！我真的好开心！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 05</span>
+          <span class="diary-preview">今天放学后我去上课了但是你一直挂着语音陪我哟～你和Lisa去了梅森给我买了大黄，还写了情书！我真…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天放学后我去上课了但是你一直挂着语音陪我哟～你和Lisa去了梅森给我买了大黄，还写了情书！我真的好开心！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月6号 天真是个好日子呀～我们去约会咯～ 我们先是打了网球！（但是我把你的项链弄坏了…）（我们在lisa家第一次亲嘴了！！！！！！！！）然后去了downtown拿了花，今天是正式和你表白哟，从今天开始我算是彻彻底底赖上你了！大黄和情书我真的超级超级喜欢！我在此宣誓，我夏天宸一定要让肖瑶成为世界上最幸福的女孩！我们也是正式官宣了哟～ 不是随便说说的那种，是真的想做到。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 06</span>
+          <span class="diary-preview">天真是个好日子呀～我们去约会咯～ 我们先是打了网球！（但是我把你的项链弄坏了…）（我们在lisa…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>天真是个好日子呀～我们去约会咯～ 我们先是打了网球！（但是我把你的项链弄坏了…）（我们在lisa家第一次亲嘴了！！！！！！！！）然后去了downtown拿了花，今天是正式和你表白哟，从今天开始我算是彻彻底底赖上你了！大黄和情书我真的超级超级喜欢！我在此宣誓，我夏天宸一定要让肖瑶成为世界上最幸福的女孩！我们也是正式官宣了哟～ 不是随便说说的那种，是真的想做到。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月7号 我们换了 QQ 情头。我还骑着车来找你。你给我头上扎了个大蒜，走之前还被我的头发笑死。和你在一起的时候，我经常觉得自己有点傻，但我又特别喜欢这种傻。因为只有在你面前，我才会这么放松，这么开心。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 07</span>
+          <span class="diary-preview">我们换了 QQ 情头。我还骑着车来找你。你给我头上扎了个大蒜，走之前还被我的头发笑死。和你在一起…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>我们换了 QQ 情头。我还骑着车来找你。你给我头上扎了个大蒜，走之前还被我的头发笑死。和你在一起的时候，我经常觉得自己有点傻，但我又特别喜欢这种傻。因为只有在你面前，我才会这么放松，这么开心。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月8号 是我第一次坐校车，也是我们第一次一起去麦当劳。表面上说是做 PPT，我们在那真的是越来无法无天了 明明第一次去不是那样的。我还被迫自愿穿女仆装了…">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 08</span>
+          <span class="diary-preview">是我第一次坐校车，也是我们第一次一起去麦当劳。表面上说是做 PPT，我们在那真的是越来无法无天了…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>是我第一次坐校车，也是我们第一次一起去麦当劳。表面上说是做 PPT，我们在那真的是越来无法无天了 明明第一次去不是那样的。我还被迫自愿穿女仆装了…</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月9号 今天我们又一起去麦当劳学习了哟！我还顺走了你的黑框眼镜，我要是带上能像雨宫莲一样帅就好了…… 那天我们立了一个誓：美东时间 2026 年6月10号凌晨2:26，我们在各自的床上约定，永远不成为对方的遗憾。就算以后异国，就算大学很忙，我们也一定要把恋爱谈得很好玩、很有趣，熬过大学，永不分离。宝宝，我真的一直记得。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 09</span>
+          <span class="diary-preview">今天我们又一起去麦当劳学习了哟！我还顺走了你的黑框眼镜，我要是带上能像雨宫莲一样帅就好了…… 那…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天我们又一起去麦当劳学习了哟！我还顺走了你的黑框眼镜，我要是带上能像雨宫莲一样帅就好了…… 那天我们立了一个誓：美东时间 2026 年6月10号凌晨2:26，我们在各自的床上约定，永远不成为对方的遗憾。就算以后异国，就算大学很忙，我们也一定要把恋爱谈得很好玩、很有趣，熬过大学，永不分离。宝宝，我真的一直记得。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月10号 宝宝 我想了解你的一切。了解你的原生家庭了解你的伤疤 了解你的苦楚  了解你的不甘  了解你每天为什么有那么多的不开心为什么有那么多的不容易 想知道你小时候是什么样子的,你的痛苦,你的悲伤你的疼痛,你爱吃的菜,爱吃的水果爱喝的什么酸奶,爱看什么类型的电视,爱看什么类型的电影,喜欢小猫还是小狗,你上一段的恋情,你是否已经走出来了,在乎你的情绪你的眼泪,你抽的每一根烟,以及每一个回眸,以及你说爱我的每个瞬间每一秒,爱你的胡思乱想,爱你的嘴硬,我想了解你的一切 所以看看腿。那天我还告诉了我妈妈我们在一起的事。那一刻我真的很开心，因为我再也不用偷偷摸摸地喜欢你了。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 10</span>
+          <span class="diary-preview">宝宝 我想了解你的一切。了解你的原生家庭了解你的伤疤 了解你的苦楚  了解你的不甘  了解你每天…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>宝宝 我想了解你的一切。了解你的原生家庭了解你的伤疤 了解你的苦楚  了解你的不甘  了解你每天为什么有那么多的不开心为什么有那么多的不容易 想知道你小时候是什么样子的,你的痛苦,你的悲伤你的疼痛,你爱吃的菜,爱吃的水果爱喝的什么酸奶,爱看什么类型的电视,爱看什么类型的电影,喜欢小猫还是小狗,你上一段的恋情,你是否已经走出来了,在乎你的情绪你的眼泪,你抽的每一根烟,以及每一个回眸,以及你说爱我的每个瞬间每一秒,爱你的胡思乱想,爱你的嘴硬,我想了解你的一切 所以看看腿。那天我还告诉了我妈妈我们在一起的事。那一刻我真的很开心，因为我再也不用偷偷摸摸地喜欢你了。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月11号 嘿嘿今天我拉着gxy去给你买毕业礼物啦～但是被你看出来了……那咋了看出来咋了 我就要送你礼物！明天就是毕业典礼啦 好期待！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 11</span>
+          <span class="diary-preview">嘿嘿今天我拉着gxy去给你买毕业礼物啦～但是被你看出来了……那咋了看出来咋了 我就要送你礼物！明…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>嘿嘿今天我拉着gxy去给你买毕业礼物啦～但是被你看出来了……那咋了看出来咋了 我就要送你礼物！明天就是毕业典礼啦 好期待！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月12号 今天是毕业典礼！！！可惜你感冒太严重了只能呆在家里但是我也上一节课就回家陪你啦嘻嘻！没有你的学校一点意思都没有！为什么你的第一个jelly cat是你住家阿姨送的！！！！为什么！！！！！！不！！！！！！！嘿嘿但是我们领证啦！好开心！能一直和你在一起真好啊！！！毕业有你真好啊！你说我最好发一个自己一个人的毕业朋友圈但是我已经认定你了，我不会丢下你的！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 12</span>
+          <span class="diary-preview">今天是毕业典礼！！！可惜你感冒太严重了只能呆在家里但是我也上一节课就回家陪你啦嘻嘻！没有你的学校…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天是毕业典礼！！！可惜你感冒太严重了只能呆在家里但是我也上一节课就回家陪你啦嘻嘻！没有你的学校一点意思都没有！为什么你的第一个jelly cat是你住家阿姨送的！！！！为什么！！！！！！不！！！！！！！嘿嘿但是我们领证啦！好开心！能一直和你在一起真好啊！！！毕业有你真好啊！你说我最好发一个自己一个人的毕业朋友圈但是我已经认定你了，我不会丢下你的！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月13号 今天我们一起去吃了盒饭！还去宠物店撸猫了！我们还一起吃了一个冰激凌！在downtown的小湖边散步，在游乐园一起玩！还有嘿嘿和大黄的合照！完美的一家四口！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 13</span>
+          <span class="diary-preview">今天我们一起去吃了盒饭！还去宠物店撸猫了！我们还一起吃了一个冰激凌！在downtown的小湖边散…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天我们一起去吃了盒饭！还去宠物店撸猫了！我们还一起吃了一个冰激凌！在downtown的小湖边散步，在游乐园一起玩！还有嘿嘿和大黄的合照！完美的一家四口！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月14号 我们一起去拼豆。第一次拼豆真的很好玩，和你待那么久也很安心。我很喜欢你拼的钥匙圈。只是我高估了自己的速度，让你等了那么久。可是你没有生气，你只是陪着我。和你在一起，我经常会有这种感觉：我好像不用那么完美，也可以被你喜欢。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 14</span>
+          <span class="diary-preview">我们一起去拼豆。第一次拼豆真的很好玩，和你待那么久也很安心。我很喜欢你拼的钥匙圈。只是我高估了自…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>我们一起去拼豆。第一次拼豆真的很好玩，和你待那么久也很安心。我很喜欢你拼的钥匙圈。只是我高估了自己的速度，让你等了那么久。可是你没有生气，你只是陪着我。和你在一起，我经常会有这种感觉：我好像不用那么完美，也可以被你喜欢。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月15号 嘻嘻今天早上就给你解释了霸王龙形态！今天你忘记把耳机还给我了！所以你上课后又出来给我耳机，我们还亲亲了！你好像拿舌头舔了我一下，这触发了我的奇妙开关于是我回家路上就开始搜索第一次亲嘴需要注意什么了（（（。今天我们还去麦当劳学习啦，虽然学了一会儿我就去上课了！但是放学后还是待在一起了哟！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 15</span>
+          <span class="diary-preview">嘻嘻今天早上就给你解释了霸王龙形态！今天你忘记把耳机还给我了！所以你上课后又出来给我耳机，我们还…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>嘻嘻今天早上就给你解释了霸王龙形态！今天你忘记把耳机还给我了！所以你上课后又出来给我耳机，我们还亲亲了！你好像拿舌头舔了我一下，这触发了我的奇妙开关于是我回家路上就开始搜索第一次亲嘴需要注意什么了（（（。今天我们还去麦当劳学习啦，虽然学了一会儿我就去上课了！但是放学后还是待在一起了哟！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月16号 今天早上我们在学校里第一次深吻了！！！！！我们放学后一起去Lisa家录英语tedtalk了！好耶我们都拿了80分！然后还在厕所里好好亲了一亲，我勒个豆居然亲了两个小时……还给你种了草莓哟———">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 16</span>
+          <span class="diary-preview">今天早上我们在学校里第一次深吻了！！！！！我们放学后一起去Lisa家录英语tedtalk了！好耶…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天早上我们在学校里第一次深吻了！！！！！我们放学后一起去Lisa家录英语tedtalk了！好耶我们都拿了80分！然后还在厕所里好好亲了一亲，我勒个豆居然亲了两个小时……还给你种了草莓哟———</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月17号 今天我们一起换了qq音乐的情头！在学校里还和你kiss了！我们还在麦当劳的情侣专座大亲特亲了！我对着你的肚子一顿猛摸你告诉我摸肚子会有感觉？！居然会这样？！！！究竟是人性的扭曲还是道德的沦丧！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 17</span>
+          <span class="diary-preview">今天我们一起换了qq音乐的情头！在学校里还和你kiss了！我们还在麦当劳的情侣专座大亲特亲了！我…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天我们一起换了qq音乐的情头！在学校里还和你kiss了！我们还在麦当劳的情侣专座大亲特亲了！我对着你的肚子一顿猛摸你告诉我摸肚子会有感觉？！居然会这样？！！！究竟是人性的扭曲还是道德的沦丧！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月18号 今天是上学的最后一天！！在学校遇到了许多奇妙的事情，而且人太多了都亲不了！！！！！可是我还是很开心。因为这是高中最后一天，而我的身边有你。不过真是最疯狂的一天！再也不会去麦当劳了…再也不神秘了！！！！不过真好捏呀嘿嘿嘿）。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 18</span>
+          <span class="diary-preview">今天是上学的最后一天！！在学校遇到了许多奇妙的事情，而且人太多了都亲不了！！！！！可是我还是很开…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天是上学的最后一天！！在学校遇到了许多奇妙的事情，而且人太多了都亲不了！！！！！可是我还是很开心。因为这是高中最后一天，而我的身边有你。不过真是最疯狂的一天！再也不会去麦当劳了…再也不神秘了！！！！不过真好捏呀嘿嘿嘿）。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月19号 今天你给我编了彩绳！好开心！我们在学校趁着没人真是越来越猖狂了！！！嘿嘿我们考完试还一起去散步啦！小树林kisskiss！真是完美的一天呀～">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 19</span>
+          <span class="diary-preview">今天你给我编了彩绳！好开心！我们在学校趁着没人真是越来越猖狂了！！！嘿嘿我们考完试还一起去散步啦…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天你给我编了彩绳！好开心！我们在学校趁着没人真是越来越猖狂了！！！嘿嘿我们考完试还一起去散步啦！小树林kisskiss！真是完美的一天呀～</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月20号 我们一起去摘草莓了！嘿嘿你的锁骨上也有草莓哦———我们还在Lisa家“认真学习”了一下午！今天下雨了，我失去了你的彩绳———不———">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 20</span>
+          <span class="diary-preview">我们一起去摘草莓了！嘿嘿你的锁骨上也有草莓哦———我们还在Lisa家“认真学习”了一下午！今天下…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>我们一起去摘草莓了！嘿嘿你的锁骨上也有草莓哦———我们还在Lisa家“认真学习”了一下午！今天下雨了，我失去了你的彩绳———不———</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月21号 今天真是刺激的的一天啊 Lisa神秘的住家还是太来无影去无踪了，谢谢你请我喝奶茶呀～很开心能让你幸福的哭出来！也谢谢你一直在安慰我呀～但是继麦当劳之后我们又损失了一个重要根据地！！！嘿嘿我们还换了微信的情头！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 21</span>
+          <span class="diary-preview">今天真是刺激的的一天啊 Lisa神秘的住家还是太来无影去无踪了，谢谢你请我喝奶茶呀～很开心能让你…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天真是刺激的的一天啊 Lisa神秘的住家还是太来无影去无踪了，谢谢你请我喝奶茶呀～很开心能让你幸福的哭出来！也谢谢你一直在安慰我呀～但是继麦当劳之后我们又损失了一个重要根据地！！！嘿嘿我们还换了微信的情头！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月22号 诶嘿今天说是复习其实去逛街了！好开心！和你逛街真有意思呀，看着那么多商品想象你用化妆品的样子，想象你穿上好看衣服的样子真开心！和你牵着手逛街真好！我想永远牵住你的手不放开！发明那个软件的人真是个天才，我俩也是都愿打愿挨啊！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 22</span>
+          <span class="diary-preview">诶嘿今天说是复习其实去逛街了！好开心！和你逛街真有意思呀，看着那么多商品想象你用化妆品的样子，想…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>诶嘿今天说是复习其实去逛街了！好开心！和你逛街真有意思呀，看着那么多商品想象你用化妆品的样子，想象你穿上好看衣服的样子真开心！和你牵着手逛街真好！我想永远牵住你的手不放开！发明那个软件的人真是个天才，我俩也是都愿打愿挨啊！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月23号 诶嘿终于更新到最新一话啦，今天醋坛子真是大翻特翻但是宝宝你真好，一直给我解释给我安全感我真的好喜欢好喜欢好喜欢你！跟你在一起的每一分每一秒都好开心！和你打视频看着你的样子也超级喜欢！怎么样的你我都好喜欢啊啊啊啊！嘿嘿还在你腿上写了xtc爱xy！好开心！我们明天一起去看电影吧！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 23</span>
+          <span class="diary-preview">诶嘿终于更新到最新一话啦，今天醋坛子真是大翻特翻但是宝宝你真好，一直给我解释给我安全感我真的好喜…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>诶嘿终于更新到最新一话啦，今天醋坛子真是大翻特翻但是宝宝你真好，一直给我解释给我安全感我真的好喜欢好喜欢好喜欢你！跟你在一起的每一分每一秒都好开心！和你打视频看着你的样子也超级喜欢！怎么样的你我都好喜欢啊啊啊啊！嘿嘿还在你腿上写了xtc爱xy！好开心！我们明天一起去看电影吧！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月24号 今天我们真的去看电影了！！！这电影真是好看，真是刺激啊，一点没看进去（ 但是今天你穿的真的好好看！！！！彻底沦陷！第一次摸穿丝袜的腿，一碰到脑子已经快烧焦了......希望我们享受剩下的几天！！！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 24</span>
+          <span class="diary-preview">今天我们真的去看电影了！！！这电影真是好看，真是刺激啊，一点没看进去（ 但是今天你穿的真的好好看…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天我们真的去看电影了！！！这电影真是好看，真是刺激啊，一点没看进去（ 但是今天你穿的真的好好看！！！！彻底沦陷！第一次摸穿丝袜的腿，一碰到脑子已经快烧焦了......希望我们享受剩下的几天！！！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月25号 看你一个人整理如此煎熬实在是于心不忍，一整天见不到你我真的忍不了啊！！！还好天助我也Lisa可以一起来！说起来这衣帽间可真是个凶险的地方啊！Lisa：我也是你们play的一环吗（？）嘿嘿今天还和你一起打着语音睡觉了！看到了你的睡颜哦～">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 25</span>
+          <span class="diary-preview">看你一个人整理如此煎熬实在是于心不忍，一整天见不到你我真的忍不了啊！！！还好天助我也Lisa可以…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>看你一个人整理如此煎熬实在是于心不忍，一整天见不到你我真的忍不了啊！！！还好天助我也Lisa可以一起来！说起来这衣帽间可真是个凶险的地方啊！Lisa：我也是你们play的一环吗（？）嘿嘿今天还和你一起打着语音睡觉了！看到了你的睡颜哦～</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月26号 明天你就要去干妈那了……今天可能是我们加拿大的最后一天吗……一起去吃了烧烤，还拍了人生四格！好开心！很开心我最后取消了行程回来找你了！我实在是接受不了这么草率的道别啊！！！本来我不想在你面前哭的…但是实在没忍住啊……宝宝，答应我一件事好吗，下次道别不要去小树林了，一腿的蚊子包实在是太舒服了。。。">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 26</span>
+          <span class="diary-preview">明天你就要去干妈那了……今天可能是我们加拿大的最后一天吗……一起去吃了烧烤，还拍了人生四格！好开…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>明天你就要去干妈那了……今天可能是我们加拿大的最后一天吗……一起去吃了烧烤，还拍了人生四格！好开心！很开心我最后取消了行程回来找你了！我实在是接受不了这么草率的道别啊！！！本来我不想在你面前哭的…但是实在没忍住啊……宝宝，答应我一件事好吗，下次道别不要去小树林了，一腿的蚊子包实在是太舒服了。。。</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月27号 天助我也———— 上天送给了我们最后一天！！不管干什么只要和你在一起就超级开心！Lisa的极品炸鱼号确实好玩）今天我们分别都没哭哦！这绝对不会是我们现实见面的最后一天！今天你问我为什么每次都是12:08跟你说我会永远喜欢你，因为我们的缘分是从那节英语课下课开始的！从2026年5月21号的中午12:08分开始 我们的故事迎来了第一个字符！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 27</span>
+          <span class="diary-preview">天助我也———— 上天送给了我们最后一天！！不管干什么只要和你在一起就超级开心！Lisa的极品炸…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>天助我也———— 上天送给了我们最后一天！！不管干什么只要和你在一起就超级开心！Lisa的极品炸鱼号确实好玩）今天我们分别都没哭哦！这绝对不会是我们现实见面的最后一天！今天你问我为什么每次都是12:08跟你说我会永远喜欢你，因为我们的缘分是从那节英语课下课开始的！从2026年5月21号的中午12:08分开始 我们的故事迎来了第一个字符！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月28号 今天是我们没法见面的第一天……宝宝我好想好想你啊！！！！！！ 去干妈家玩的开心呀～明天下午我就要登机啦 晚上你也要登机啦 我们大家都平平安安安的！宝宝我们国内见！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 28</span>
+          <span class="diary-preview">今天是我们没法见面的第一天……宝宝我好想好想你啊！！！！！！ 去干妈家玩的开心呀～明天下午我就要…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天是我们没法见面的第一天……宝宝我好想好想你啊！！！！！！ 去干妈家玩的开心呀～明天下午我就要登机啦 晚上你也要登机啦 我们大家都平平安安安的！宝宝我们国内见！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月29号 在飞机上度过的一天！能和你在飞机上发消息真好啊！！！！好想你……才第二天就这么想你了，好难熬啊！！！！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 29</span>
+          <span class="diary-preview">在飞机上度过的一天！能和你在飞机上发消息真好啊！！！！好想你……才第二天就这么想你了，好难熬啊！…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>在飞机上度过的一天！能和你在飞机上发消息真好啊！！！！好想你……才第二天就这么想你了，好难熬啊！！！！</p></div>
+      </details>
+<details class="diary-entry" data-month="6" data-text="6月30号 到家了！！！好开心！你要到明天凌晨五点才到呀～嘿嘿我已经定好闹钟！看我五点来和你打语音！宝宝我好想你！说不定你会提前到 那不行我得把闹钟调早点！超级超级想你！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 06 . 30</span>
+          <span class="diary-preview">到家了！！！好开心！你要到明天凌晨五点才到呀～嘿嘿我已经定好闹钟！看我五点来和你打语音！宝宝我好…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>到家了！！！好开心！你要到明天凌晨五点才到呀～嘿嘿我已经定好闹钟！看我五点来和你打语音！宝宝我好想你！说不定你会提前到 那不行我得把闹钟调早点！超级超级想你！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月1号 你平安落地hk我就放心啦！但是还是好担心你毕竟只有你一个人嘛……要是我也在一起玩就好了！可惜我港澳通行证在国内…… 不过你去了好多只在港片里看过的地方！还带嘿嘿打卡了！真好！最后还平安落地北京啦，玩的开心！我会永远喜欢你哒宝宝！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 01</span>
+          <span class="diary-preview">你平安落地hk我就放心啦！但是还是好担心你毕竟只有你一个人嘛……要是我也在一起玩就好了！可惜我港…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>你平安落地hk我就放心啦！但是还是好担心你毕竟只有你一个人嘛……要是我也在一起玩就好了！可惜我港澳通行证在国内…… 不过你去了好多只在港片里看过的地方！还带嘿嘿打卡了！真好！最后还平安落地北京啦，玩的开心！我会永远喜欢你哒宝宝！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月2号 宝宝————对不起….我知道你在和你的好朋友们玩还在一直问一直问，我太烦了！！！！我会改正的！不要不喜欢我啊……我真的超级超级超级超级喜欢你的！我一定不会这么烦了！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 02</span>
+          <span class="diary-preview">宝宝————对不起….我知道你在和你的好朋友们玩还在一直问一直问，我太烦了！！！！我会改正的！不…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>宝宝————对不起….我知道你在和你的好朋友们玩还在一直问一直问，我太烦了！！！！我会改正的！不要不喜欢我啊……我真的超级超级超级超级喜欢你的！我一定不会这么烦了！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月3号 宝宝早上和我打语音了嘿嘿嘿！宝宝安慰我了！嘿嘿嘿！宝宝是一直陪我挂着语音！每天都更加喜欢你了！！！！！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 03</span>
+          <span class="diary-preview">宝宝早上和我打语音了嘿嘿嘿！宝宝安慰我了！嘿嘿嘿！宝宝是一直陪我挂着语音！每天都更加喜欢你了！！…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>宝宝早上和我打语音了嘿嘿嘿！宝宝安慰我了！嘿嘿嘿！宝宝是一直陪我挂着语音！每天都更加喜欢你了！！！！！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月4号 诶打三个小时篮球好厉害！宝宝你为了我直接鸽了我兄弟！嘿嘿嘿好开心！把你占为己有了！我好喜欢你呀！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 04</span>
+          <span class="diary-preview">诶打三个小时篮球好厉害！宝宝你为了我直接鸽了我兄弟！嘿嘿嘿好开心！把你占为己有了！我好喜欢你呀！</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>诶打三个小时篮球好厉害！宝宝你为了我直接鸽了我兄弟！嘿嘿嘿好开心！把你占为己有了！我好喜欢你呀！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月5号 老师我有点死了…怎么和阿姨说了！！！！！要干嘛！！不——————从今天开始你就要去惨无人道的集中营了———不要啊！！！！高僧预测一波 你会在课上大睡特睡！不过加油呀！嘿嘿你们怎么知道全世界最好的宝宝xy给我点了饮料！怕我不喜欢还给我点了两杯！！！关于雅思：宝宝你最最最棒啦肯定可以轻轻松松考出来的！好想好想你！！！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 05</span>
+          <span class="diary-preview">老师我有点死了…怎么和阿姨说了！！！！！要干嘛！！不——————从今天开始你就要去惨无人道的集中…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>老师我有点死了…怎么和阿姨说了！！！！！要干嘛！！不——————从今天开始你就要去惨无人道的集中营了———不要啊！！！！高僧预测一波 你会在课上大睡特睡！不过加油呀！嘿嘿你们怎么知道全世界最好的宝宝xy给我点了饮料！怕我不喜欢还给我点了两杯！！！关于雅思：宝宝你最最最棒啦肯定可以轻轻松松考出来的！好想好想你！！！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月6号 能给你点好吃的好开心！真的好想好想你！每天都好想你，一打开手机就在想你！！！！我昨天预测什么来着 今天是不是超级困！最了解的一集好吧">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 06</span>
+          <span class="diary-preview">能给你点好吃的好开心！真的好想好想你！每天都好想你，一打开手机就在想你！！！！我昨天预测什么来着…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>能给你点好吃的好开心！真的好想好想你！每天都好想你，一打开手机就在想你！！！！我昨天预测什么来着 今天是不是超级困！最了解的一集好吧</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月7号 今天去吃饭的路上我看着手腕上的皮筋陷入了沉思，我们见面了一起去买好看的情侣手链吧！（默默怀念彩绳中）好像和你一起戴好多好看的东西！我也很想更新网站的((( 但是没招啊 我这桌子听说明天才能到，明天看看能不能登上外网更新一下！宝宝今天也好想好想你！超级喜欢你！每天都比前一天更喜欢你一点！我点的饮料好喝嘛，我想每天都给你投喂！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 07</span>
+          <span class="diary-preview">今天去吃饭的路上我看着手腕上的皮筋陷入了沉思，我们见面了一起去买好看的情侣手链吧！（默默怀念彩绳…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>今天去吃饭的路上我看着手腕上的皮筋陷入了沉思，我们见面了一起去买好看的情侣手链吧！（默默怀念彩绳中）好像和你一起戴好多好看的东西！我也很想更新网站的((( 但是没招啊 我这桌子听说明天才能到，明天看看能不能登上外网更新一下！宝宝今天也好想好想你！超级喜欢你！每天都比前一天更喜欢你一点！我点的饮料好喝嘛，我想每天都给你投喂！</p></div>
+      </details>
+<details class="diary-entry" data-month="7" data-text="7月8号 已于今天成功打开网站，望周知！对不起宝宝我一直睡错过和你休息时间了啊啊啊啊好想和你打视频好想和你打语音我自己没珍惜啊啊啊啊啊！但是当你和我说没睡是想和我说晚安的时候我的心真的又一次被你击中了啊啊啊啊啊啊啊啊啊啊啊啊啊！对于这样疯狂和信任的行为我真的毫无抵抗力，万一我一直没醒那你不没的睡了！但是好喜欢好喜欢好喜欢啊啊啊啊好喜欢啊宝宝好喜欢和你在一起干什么都喜欢，抱抱喜欢，亲亲喜欢，对你大摸特摸也喜欢，吃饭喜欢，玩游戏喜欢，聊荤内容也喜欢！好喜欢好喜欢好喜欢你 超级超级超级爱你！什么样的你我都好喜欢，学习的你我喜欢，玩游戏得你我喜欢，洗澡的你我没见过但肯定喜欢（看看）！">
+        <summary>
+          <span class="diary-dot" aria-hidden="true"></span>
+          <span class="diary-date">2026 . 07 . 08</span>
+          <span class="diary-preview">已于今天成功打开网站，望周知！对不起宝宝我一直睡错过和你休息时间了啊啊啊啊好想和你打视频好想和你…</span>
+          <span class="diary-plus" aria-hidden="true">＋</span>
+        </summary>
+        <div class="diary-body"><p>已于今天成功打开网站，望周知！对不起宝宝我一直睡错过和你休息时间了啊啊啊啊好想和你打视频好想和你打语音我自己没珍惜啊啊啊啊啊！但是当你和我说没睡是想和我说晚安的时候我的心真的又一次被你击中了啊啊啊啊啊啊啊啊啊啊啊啊啊！对于这样疯狂和信任的行为我真的毫无抵抗力，万一我一直没醒那你不没的睡了！但是好喜欢好喜欢好喜欢啊啊啊啊好喜欢啊宝宝好喜欢和你在一起干什么都喜欢，抱抱喜欢，亲亲喜欢，对你大摸特摸也喜欢，吃饭喜欢，玩游戏喜欢，聊荤内容也喜欢！好喜欢好喜欢好喜欢你 超级超级超级爱你！什么样的你我都好喜欢，学习的你我喜欢，玩游戏得你我喜欢，洗澡的你我没见过但肯定喜欢（看看）！</p></div>
+      </details>
+        </div>
+        <div id="diary-empty" class="album-note hidden">暂时没有找到这段回忆，换个词试试吧。</div>
+        <div class="diary-end">to be continued, always ♡</div>
+      </div>
+    </section>
+    <section class="section promise-section" id="promise">
+      <div class="wrap promise-grid">
+        <div class="promise-lead fade-up"><div class="smallcaps">04 / THE NEXT CHAPTER</div><h2>不是高中限定，<br>是想带去<em>未来</em>的人。</h2><p class="little-heart">with you, through every season. ♡</p></div>
+        <div class="promise-copy fade-up">
+        <p>宝宝，其实我知道，你会害怕。</p>
+        <p>你怕我们一毕业就分开，怕我现在说的未来都只是画饼，怕异国，怕大学，怕时间，怕新环境，怕有一天我们慢慢变淡。</p>
+        <p>我不想用一句“你别怕”就让你相信我。</p>
+        <p>因为真正的安全感不是靠一句话给的，是靠以后一天一天做出来的。</p>
+        <p>我不能保证未来永远没有困难，也不能保证我们永远不会吵架、不会委屈、不会想太多。可是我能保证的是，只要我们还喜欢彼此，我就不会轻易放手。</p>
+        <p>我会认真回消息，会主动报备，会在你不开心的时候哄你，会在你没有安全感的时候给你安全感，会把你放进我的计划里，而不是只放进我的嘴上。</p>
+        <p>我想和你一起把异国恋谈得很好玩。</p>
+        <p>想和你分享每天发生的小事，想和你打电话睡觉，想和你一起看电影，想听你吐槽，想陪你开心，也想陪你难过。想在大学里继续爱你，想在很多年后再和你一起回头看这封信，然后笑我们当时怎么这么幼稚、这么认真、这么可爱。</p>
+        <p>肖瑶，我真的很喜欢你。</p>
+        <p>不是只喜欢你漂亮的样子，不是只喜欢你开心的时候，也不是只喜欢我们刚在一起的新鲜感。我喜欢你的小脾气，喜欢你的嘴硬，喜欢你给我的安全感，喜欢你愿意陪我玩，喜欢你认真安慰我，喜欢你靠近我的时候，喜欢你说爱我的每一秒。</p>
+        <p>你不是我的高中限定。</p>
+        <p>你是我想带去未来的人。</p>
+        <p>所以这封信不是结束，也不是告别。</p>
+        <p>它只是我们故事的第一本日记，是从 5 月 21 号到现在的证明。以后我们还会有很多很多天，很多很多新的日期，很多很多新的回忆。等以后我们再打开这封信的时候，我希望我们可以一起接着往下写。</p>
+        <p>我夏天宸和肖瑶，约定过永远不成为对方的遗憾。</p>
+        <p>我会记得。</p>
+        <p>我也会做到。</p>
+        <p>毕业快乐，宝宝。</p>
+        <p>未来很远，但我会一直牵着你的手。</p>
+          <div class="promise-quote">“我们约定过，永远不成为对方的遗憾。”</div>
+          <p class="promise-sign">From : 赖上你的夏天宸</p>
+        </div>
+      </div>
+    </section>
+    <section class="next" aria-label="未完待续"><div class="wrap"><div class="smallcaps" style="color:#fff">XTC × XY · ONE MORE CHAPTER</div><h2>未完待续.</h2><p>以后我们还会有很多很多天。<br>下一页，也一起写吧。</p></div></section>
   </main>
-
-  <script>
-    const PASSCODE = "0531"; 
-    const unlock = document.getElementById("unlock");
-    const passcode = document.getElementById("passcode");
-    const openBtn = document.getElementById("openBtn");
-    const wrong = document.getElementById("wrong");
-
-    function showLetter() {
-      unlock.classList.add("hidden");
-      localStorage.setItem("xy-letter-opened", "yes");
-      setTimeout(() => document.getElementById("letter").scrollIntoView({ behavior: "smooth" }), 300);
-    }
-
-    function tryOpen() {
-      const value = (passcode.value || "").replace(/\s/g, "");
-      if (value === PASSCODE) {
-        showLetter();
-      } else {
-        wrong.textContent = "不对哦，再想想我们在一起的那一天。";
-        passcode.select();
-      }
-    }
-
-    if (localStorage.getItem("xy-letter-opened") === "yes") {
-      unlock.classList.add("hidden");
-    }
-
-    openBtn.addEventListener("click", tryOpen);
-    passcode.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") tryOpen();
-    });
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      });
-    }
-  </script>
+  <footer class="footer wrap"><span>Made with love, for Xiaoyao.</span><i>∞</i><span>Since 2026.05.21 · 12:08</span></footer>
+  <div class="modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="照片放大查看" aria-hidden="true">
+    <button type="button" class="modal-close" id="modal-close" aria-label="关闭照片">×</button>
+    <button type="button" class="modal-arrow" id="modal-prev" aria-label="上一张">‹</button>
+    <img class="modal-photo" id="modal-photo" alt="">
+    <button type="button" class="modal-arrow right" id="modal-next" aria-label="下一张">›</button>
+    <div class="modal-details" id="modal-details"></div>
+  </div>
 </body>
 </html>

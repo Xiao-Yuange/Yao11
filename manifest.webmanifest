@@ -1,9 +1,9 @@
 {
-  "name": "To 肖瑶",
-  "short_name": "给肖瑶的信",
-  "start_url": "./index.html",
+  "name": "我们的故事 · 夏天宸 × 肖瑶",
+  "short_name": "我们的故事",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#fff4f7",
-  "theme_color": "#f7c6d4",
-  "description": "一封写给肖瑶的信。"
+  "theme_color": "#fbf8f3",
+  "background_color": "#fbf8f3",
+  "description": "我们还在继续。"
 }

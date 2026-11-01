@@ -1,35 +1,25 @@
-const CACHE_NAME = "xy-letter-cache-v1";
-const FILES_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./manifest.webmanifest"
-];
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
-  );
-  self.skipWaiting();
+const CACHE_NAME = 'xy-story-v2-20261101';
+const CORE = ['./','./index.html','./assets/style.css','./assets/app.js','./gallery-data.js','./manifest.webmanifest'];
+self.addEventListener('install',event=>{
+  event.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));
 });
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((key) => key !== CACHE_NAME ? caches.delete(key) : null))
-    )
-  );
-  self.clients.claim();
+self.addEventListener('activate',event=>{
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME&&k.startsWith('xy-')).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
 });
-
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
-      }).catch(() => caches.match("./index.html"));
-    })
-  );
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET')return;
+  const u=new URL(event.request.url);
+  if(u.origin!==self.location.origin)return;
+  const isImage=/\.(?:jpg|jpeg|png|webp|gif|avif)$/i.test(u.pathname);
+  if(isImage){
+    event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{
+      if(response.ok){const clone=response.clone();caches.open(CACHE_NAME).then(c=>c.put(event.request,clone)).catch(()=>{});}
+      return response;
+    })));
+  } else {
+    event.respondWith(fetch(event.request).then(response=>{
+      if(response.ok){const clone=response.clone();caches.open(CACHE_NAME).then(c=>c.put(event.request,clone)).catch(()=>{});}
+      return response;
+    }).catch(()=>caches.match(event.request).then(cached=>cached||caches.match('./index.html'))));
+  }
 });
