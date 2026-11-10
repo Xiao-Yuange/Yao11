@@ -7,5 +7,5 @@
 window.XY_SONGS = [
   { title: "神秘歌曲1", note: "偷偷", file: "music/toutou.mp3" },
   { title: "神秘歌曲2", note: "Forever Love", file: "music/Foreverlove.mp3" },
-  { title: "生日快乐呀！", note: "11.11 · 生日限定", file: "music/birthday-wish.mp3", birthdayOnly: true }
+  { title: "Happy Birthday", note: "BY MAYDAY", file: "music/birthday-wish.mp3", birthdayOnly: true }
 ];
