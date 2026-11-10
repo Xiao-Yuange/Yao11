@@ -5,8 +5,7 @@
  * 标记 birthdayOnly 的曲目只在 11 月 11 日出现（或生日预览模式）。
  */
 window.XY_SONGS = [
-  { title: "神秘歌曲1", note: "神神秘秘", file: "music/first-summer.mp3" },
-  { title: "神秘歌曲2", note: "神神秘秘", file: "music/goodnight.mp3" },
-  { title: "神秘歌曲3", note: "神神秘秘", file: "music/next-chapter.mp3" },
+  { title: "神秘歌曲1", note: "偷偷", file: "music/toutou.mp3" },
+  { title: "神秘歌曲2", note: "Forever Love", file: "music/Foreverlove.mp3" },
   { title: "生日快乐呀！", note: "11.11 · 生日限定", file: "music/birthday-wish.mp3", birthdayOnly: true }
 ];
