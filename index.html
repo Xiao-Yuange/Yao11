@@ -8,8 +8,11 @@
   <title>我们的故事 · 夏天宸 × 肖瑶</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/music-birthday.css">
   <script defer src="gallery-data.js"></script>
   <script defer src="assets/app.js"></script>
+  <script defer src="music-data.js"></script>
+  <script defer src="assets/music-birthday.js"></script>
 </head>
 <body>
   <div class="lock-screen" id="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-heading">
@@ -42,6 +45,10 @@
     <section class="hero" aria-label="故事首页">
       <div class="wrap hero-inner">
         <div class="hero-copy fade-up">
+          <div class="birthday-ribbon" id="birthday-ribbon" hidden>
+            <span>✳ TODAY IS YOUR DAY · 11.11</span>
+            <button type="button" id="birthday-reopen">拆开今天的生日惊喜 ↗</button>
+          </div>
           <div class="eyebrow">OUR LITTLE FOREVER · 2026</div>
           <h1>原来，<br>故事真的<br>可以<em>很长。</em></h1>
           <p class="hero-desc">从那节英语课下课，到现在隔着屏幕说晚安。<br>我们没有停在毕业那一天，我们还在认真地相爱。</p>
@@ -609,6 +616,55 @@
     <img class="modal-photo" id="modal-photo" alt="">
     <button type="button" class="modal-arrow right" id="modal-next" aria-label="下一张">›</button>
     <div class="modal-details" id="modal-details"></div>
+  </div>
+  <!-- 每年 11 月 11 日，按照打开网页的设备当地日期显示生日惊喜 -->
+  <div class="birthday-overlay" id="birthday-overlay" role="dialog" aria-modal="true" aria-labelledby="birthday-title" aria-hidden="true" hidden>
+    <div class="birthday-shimmer" aria-hidden="true"></div>
+    <article class="birthday-card">
+      <button class="birthday-close" id="birthday-close" type="button" aria-label="关闭生日惊喜">×</button>
+      <div class="birthday-kicker">A LITTLE SURPRISE · 11 NOVEMBER</div>
+      <div class="birthday-doodle" aria-hidden="true">✳ &nbsp; ♡ &nbsp; ✳</div>
+      <h2 id="birthday-title">肖瑶，<br><em>生日快乐。</em></h2>
+      <p class="birthday-subtitle">今天，想让全世界都慢一点，<br>让你知道，有个人正隔着距离认真地爱你。</p>
+      <div class="cake-stage" aria-label="生日蛋糕与三根蜡烛">
+        <div class="cake-illustration" id="cake-illustration" aria-hidden="true">
+          <div class="cake-candles"><span class="cake-candle"><i></i></span><span class="cake-candle"><i></i></span><span class="cake-candle"><i></i></span></div>
+          <div class="cake-icing"></div><div class="cake-body"><span class="cake-heart">♡</span></div>
+          <div class="cake-plate"></div>
+        </div>
+        <button class="birthday-wish-btn" id="birthday-blow" type="button">轻轻点一下，吹灭生日蜡烛 ✳</button>
+        <div class="birthday-wish-result" id="birthday-wish-result" role="status" aria-live="polite"></div>
+      </div>
+      <button class="birthday-read-btn" id="birthday-read" type="button" aria-expanded="false">拆开我写给你的生日信 ↗</button>
+      <div class="birthday-letter" id="birthday-letter" hidden>
+        <div class="birthday-letter-label">TO MY FAVORITE PERSON</div>
+        <p>宝宝，生日快乐！</p>
+        <p>今年你的生日，我没办法像以前那样直接出现在你身边，亲手把礼物塞到你怀里，再看着你笑。但是没关系，我们的距离从来不等于我们之间少了什么。</p>
+        <p>我还记得 5 月 21 日的 12:08，记得第一次牵住你的手，记得 6 月 10 日凌晨我们说过，永远不要成为对方的遗憾。后来我们真的开始异地了，可我发现，喜欢你这件事不但没有停下来，反而每天都有新的理由。</p>
+        <p>我希望新的一岁里，你能少一点烦恼，多一点快乐；想做的事情都能慢慢实现，也能一直放心地做那个最真实的小鱼。无论你在什么城市，我都很想听你分享今天发生的事情，想看你开心，想和你一起把接下来的每个生日过得比上一个更好。</p>
+        <p>今天你是寿星，所以要许一个大大的愿望。至于我的愿望，就先藏起来——其实也不难猜：希望往后很多年的 11 月 11 日，都还能对你说一声生日快乐。</p>
+        <div class="birthday-signature">一直赖着你的夏天宸 ♡</div>
+      </div>
+      <p class="birthday-footnote">只在每年的 11 月 11 日出现 · 你可以再打开这份惊喜</p>
+      <button class="birthday-continue" id="birthday-continue" type="button">回到我们的故事 ↓</button>
+    </article>
+    <div class="birthday-confetti" id="birthday-confetti" aria-hidden="true"></div>
+  </div>
+  <!-- 始终悬浮的音乐播放器：由 music-data.js 管理曲目 -->
+  <div class="xy-music" id="xy-music">
+    <section class="music-panel" id="music-panel" aria-label="我们的音乐播放器" hidden>
+      <div class="music-panel-top"><div><span class="music-label">OUR LITTLE SOUNDTRACK</span><h2>我们的歌单 ♡</h2></div><button type="button" id="music-close" aria-label="收起音乐播放器">×</button></div>
+      <div class="music-current">
+        <div class="music-art" aria-hidden="true"><span>♫</span></div>
+        <div class="music-current-text"><span class="music-sub-label">NOW PLAYING</span><strong id="music-name">选择一首歌</strong><small id="music-note">让旋律陪着我们翻阅回忆</small></div>
+      </div>
+      <div class="music-progress-row"><span id="music-time">0:00</span><input type="range" id="music-progress" min="0" max="100" value="0" aria-label="歌曲播放进度"><span id="music-duration">0:00</span></div>
+      <div class="music-controls"><button type="button" id="music-prev" aria-label="上一首">‹‹</button><button type="button" id="music-play" class="music-play" aria-label="播放音乐">▶</button><button type="button" id="music-next" aria-label="下一首">››</button><label class="music-volume"><span aria-hidden="true">♫</span><input id="music-volume" type="range" min="0" max="100" value="55" aria-label="音乐音量"></label></div>
+      <div id="music-tracks" class="music-tracks" role="group" aria-label="歌曲列表"></div>
+      <p id="music-status" class="music-status" role="status" aria-live="polite">点击播放后才会有声音，不会突然吓到你。</p>
+    </section>
+    <button class="music-float" id="music-toggle" type="button" aria-label="打开音乐播放器" aria-expanded="false" aria-controls="music-panel"><span class="music-vinyl" id="music-vinyl" aria-hidden="true"><span>♡</span></span><span class="music-float-text">OUR SONGS</span></button>
+    <audio id="music-audio" preload="metadata" aria-label="背景音乐"></audio>
   </div>
 </body>
 </html>
