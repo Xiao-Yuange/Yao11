@@ -5,8 +5,8 @@
  * 标记 birthdayOnly 的曲目只在 11 月 11 日出现（或生日预览模式）。
  */
 window.XY_SONGS = [
-  { title: "那个夏天开始了", note: "2026 · 05.21 · 12:08", file: "music/first-summer.mp3" },
-  { title: "隔着屏幕说晚安", note: "异地的夜晚，也有你", file: "music/goodnight.mp3" },
-  { title: "下一次见面", note: "下一页，我们继续写", file: "music/next-chapter.mp3" },
-  { title: "今天你是主角", note: "11.11 · 生日限定", file: "music/birthday-wish.mp3", birthdayOnly: true }
+  { title: "神秘歌曲1", note: "神神秘秘", file: "music/first-summer.mp3" },
+  { title: "神秘歌曲2", note: "神神秘秘", file: "music/goodnight.mp3" },
+  { title: "神秘歌曲3", note: "神神秘秘", file: "music/next-chapter.mp3" },
+  { title: "生日快乐呀！", note: "11.11 · 生日限定", file: "music/birthday-wish.mp3", birthdayOnly: true }
 ];
