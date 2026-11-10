@@ -11,6 +11,7 @@ function showPage() {
   unlock.classList.add('dismissed');
   unlock.setAttribute('aria-hidden','true');
   document.body.classList.remove('locked');
+  window.dispatchEvent(new Event('xy:unlocked'));
   try { localStorage.setItem('xy-letter-opened','yes'); } catch (e) {}
 }
 try { if (localStorage.getItem('xy-letter-opened')==='yes') showPage(); } catch(e) {}
